@@ -19,9 +19,13 @@ public class Player {
         nbPas = parPas;
     }
 
-    public void Deplacement(Pair<Integer, Integer> posVoulue) {
+    public Pair<Integer,Integer> deplacement(Pair<Integer, Integer> posVoulue) {
     }
 
-    public void Permutation(Temple parTemple) {
+    public void permutation(Temple parTemple) {
+    }
+
+    public Pair<Integer, Integer> getPlayerPos() {
+        return playerPos;
     }
 }
