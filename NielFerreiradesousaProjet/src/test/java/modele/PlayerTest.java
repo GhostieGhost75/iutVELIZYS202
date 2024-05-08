@@ -7,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerTest {
     @Test
     void Player(){
+        int numcristal=0;
+        int NbPas=0;
         Player joueurTest = new Player();
         boolean equals = joueurTest.getPlayerPos().equals(new Pair<Integer,Integer>(0,0));
-        boolean equals2 = joueurTest.getCristalCol()==0;
-        boolean equals3 = joueurTest.getNbPas()==0;
+        boolean equals2 = joueurTest.getCristalCol()==numcristal;
+        boolean equals3 = joueurTest.getNbPas()==NbPas;
 
     }
 
