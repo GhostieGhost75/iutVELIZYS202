@@ -28,4 +28,12 @@ public class Player {
     public Pair<Integer, Integer> getPlayerPos() {
         return playerPos;
     }
+
+    public int getCristalCol() {
+        return cristalCol;
+    }
+
+    public int getNbPas() {
+        return nbPas;
+    }
 }
