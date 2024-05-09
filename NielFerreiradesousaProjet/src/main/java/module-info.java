@@ -7,5 +7,5 @@ module com.example.nielferreiradesousaprojet {
 
     opens com.example.nielferreiradesousaprojet to javafx.fxml;
     exports com.example.nielferreiradesousaprojet;
-
+    exports vue;
 }
