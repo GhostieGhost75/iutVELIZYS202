@@ -13,6 +13,9 @@ class PlayerTest {
         boolean equals = joueurTest.getPlayerPos().equals(new Pair<Integer,Integer>(0,0));
         boolean equals2 = joueurTest.getCristalCol()==numcristal;
         boolean equals3 = joueurTest.getNbPas()==NbPas;
+        assertTrue(equals);
+        assertTrue(equals2);
+        assertTrue(equals3);
 
     }
 
@@ -28,7 +31,16 @@ class PlayerTest {
 
     @Test
     void permutation() {
+    Temple templeTest = new Temple(new Pair<Integer,Integer>(1,1),2,3);
+    Player joueurTest = new Player(new Pair<Integer,Integer>(1,1),1,0);
+    int cristalTemple = templeTest.getCristal();
+    int cristalJoueur = joueurTest.getCristalCol();
+    joueurTest.permutation(templeTest);
+    boolean permuT = templeTest.getCristal()==cristalJoueur;
+    boolean permuP = joueurTest.getCristalCol()==cristalTemple;
+    assertTrue(permuT);
+    assertTrue(permuP);
 
-        }
+    }
 
 }
