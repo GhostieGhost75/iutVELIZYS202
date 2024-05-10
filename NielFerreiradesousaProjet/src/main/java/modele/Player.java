@@ -20,6 +20,7 @@ public class Player {
     }
 
     public Pair<Integer,Integer> deplacement(Pair<Integer, Integer> posVoulue) {
+        return new Pair<Integer, Integer>(0,0);
     }
 
     public void permutation(Temple parTemple) {
