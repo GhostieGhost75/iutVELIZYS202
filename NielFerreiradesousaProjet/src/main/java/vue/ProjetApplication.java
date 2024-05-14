@@ -14,7 +14,7 @@ public class ProjetApplication extends Application {
         Rectangle2D screenSize = Screen.getPrimary().getBounds();//obtient la taille de l'écran
         stage.setWidth(screenSize.getWidth());
         stage.setHeight(screenSize.getHeight()/1.03);//divisés par 3% car sinon la taille de la fenetre dépasse un peu la taille de l'écran
-        VBox root = new vue.VboxCanva();
+        VBox root = new VBoxRoot();
         Scene scene = new Scene(root, screenSize.getHeight()/1.03,screenSize.getWidth());
         stage.setScene(scene);
         stage.setTitle("APPRENTI ORDONNATEUR");
