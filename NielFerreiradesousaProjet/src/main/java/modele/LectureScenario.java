@@ -27,7 +27,7 @@ public class LectureScenario {
                 int posY = scanner.nextInt();
                 int couleur = scanner.nextInt();
                 int cristal = scanner.nextInt();
-                temple = new Temple(new Position(posY, posY),couleur,cristal);
+                temple = new Temple(new Position(posX, posY),couleur,cristal);
                 templesDuScenario.add(temple);
             }
             scanner.close();
