@@ -1,6 +1,5 @@
 package modele;
 
-import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +9,7 @@ class PlayerTest {
         int numcristal=0;
         int NbPas=0;
         Player joueurTest = new Player();
-        boolean equals = joueurTest.getPlayerPos().equals(new Pair<Integer,Integer>(0,0));
+        boolean equals = joueurTest.getPlayerPos().equals(new Position(13,13));
         boolean equals2 = joueurTest.getCristalCol()==numcristal;
         boolean equals3 = joueurTest.getNbPas()==NbPas;
         assertTrue(equals);
@@ -21,7 +20,7 @@ class PlayerTest {
 
     @Test
     void deplacement() {
-        Pair[] resultat = {new Pair<Integer,Integer>(3,0),new Pair<Integer,Integer>(0,3),new Pair<Integer,Integer>(-3,0),new Pair<Integer,Integer>(0,-3),new Pair<Integer,Integer>(3,3),new Pair<Integer,Integer>(-3,-3),new Pair<Integer,Integer>(3,-3),new Pair<Integer,Integer>(-3,3)}; // Les résultats attendus
+        Position[] resultat = {new Position(3,0),new Position(0,3),new Position(-3,0),new Position(0,-3),new Position(3,3),new Position(-3,-3),new Position(3,-3),new Position(-3,3)}; // Les résultats attendus
         Player joueurtest = new Player();
         for (int i = 0; i < resultat.length; i++) {
             boolean b=(joueurtest.deplacement(resultat[i])).equals(joueurtest.getPlayerPos());
@@ -31,8 +30,8 @@ class PlayerTest {
 
     @Test
     void permutation() {
-    Temple templeTest = new Temple(new Pair<Integer,Integer>(1,1),2,3);
-    Player joueurTest = new Player(new Pair<Integer,Integer>(1,1),1,0);
+    Temple templeTest = new Temple(new Position(1,1),2,3);
+    Player joueurTest = new Player(new Position(1,1),1,0);
     int cristalTemple = templeTest.getCristal();
     int cristalJoueur = joueurTest.getCristalCol();
     joueurTest.permutation(templeTest);

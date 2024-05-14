@@ -1,13 +1,13 @@
 package modele;
 
-import org.javatuples.Pair;
+import modele.Position;
 
 public class Temple {
-    private final Pair<Integer, Integer> templePos;
+    private final Position templePos;
     private int cristalCol;
     private final int templeNum;
 
-    public Temple(Pair<Integer, Integer> parPos, int parCris, int parNum) {
+    public Temple(Position parPos, int parCris, int parNum) {
         templePos = parPos;
         cristalCol = parCris;
         templeNum = parNum;
@@ -25,7 +25,7 @@ public class Temple {
         return templeNum;
     }
 
-    public Pair<Integer, Integer> getPos() {
+    public Position getPos() {
         return templePos;
     }
 }

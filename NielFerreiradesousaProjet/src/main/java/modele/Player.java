@@ -1,32 +1,33 @@
 package modele;
 
-import org.javatuples.Pair;
+import java.util.ArrayList;
 
 public class Player {
-    private Pair<Integer, Integer> playerPos;
+    private Position playerPos;
     private int cristalCol;
-    private int nbPas;
+    private ArrayList<Temple> templeList;
 
     public Player() {
-        playerPos = new Pair (0,0);
+        playerPos = new Position(0,0);
         cristalCol = 0;
-        nbPas = 0;
+        templeList = new ArrayList<Temple>();
+
     }
 
-    public Player(Pair<Integer, Integer> parPos, int parCris, int parPas) {
+    public Player(Position parPos, int parCris, int parPas) {
         playerPos = parPos;
         cristalCol = parCris;
-        nbPas = parPas;
+        templeList = new ArrayList<Temple>();
     }
 
-    public Pair<Integer,Integer> deplacement(Pair<Integer, Integer> posVoulue) {
-        return new Pair<Integer, Integer>(0,0);
+    public Position deplacement(Position posVoulue) {
+        return new Position(0,0);
     }
 
     public void permutation(Temple parTemple) {
     }
 
-    public Pair<Integer, Integer> getPlayerPos() {
+    public Position getPlayerPos() {
         return playerPos;
     }
 
@@ -34,7 +35,11 @@ public class Player {
         return cristalCol;
     }
 
+    public void setTemples(ArrayList<Temple> temples) {
+        templeList = temples;
+    }
+
     public int getNbPas() {
-        return nbPas;
+        return playerPos.getNombreDePas();
     }
 }
