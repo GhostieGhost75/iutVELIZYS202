@@ -28,13 +28,13 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
             }
         }
-        int numCol= 1;
+        int numCol= 0;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for (double i = CARRE; i<LARGEUR_CANVAS; i+=CARRE){
             graphicsContext2D.fillText(Integer.toString(numCol),i+CARRE/3,CARRE/2);
             numCol++;
         }
-        int numLigne = 1;
+        int numLigne = 0;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for(double i = CARRE; i<HAUTEUR_CANVAS; i+= CARRE){
             graphicsContext2D.fillText(Integer.toString(numLigne),CARRE/3,i+CARRE/2);
