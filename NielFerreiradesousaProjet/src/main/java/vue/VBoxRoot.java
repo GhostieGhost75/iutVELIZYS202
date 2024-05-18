@@ -25,22 +25,27 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
         VBox.setMargin(menuBar, new Insets(9));
 
         //menu des scénarios
-
-        Menu menuScenarios = new Menu ("INTITULE_MENU_SCENARIOS");
+        Menu menuScenarios = new Menu("INTITULE_MENU_SCENARIOS");
         menuBar.getMenus().add(menuScenarios);
 
         //les items du menu scénario
-        File [] scenarios = new File("NielFerreiradesousaProjet/maps").listFiles();
-        for (int i=0; i<scenarios.length; i++) {
-            MenuItem menuItem = new MenuItem(scenarios[i].getName());
+        File[] scenarios = new File("NielFerreiradesousaProjet/maps").listFiles();
+        for (File scenario : scenarios) {
+            MenuItem menuItem = new MenuItem(scenario.getName());
+            menuItem.setUserData(scenario);
             menuItem.setOnAction(controleur);
             menuScenarios.getItems().add(menuItem);
         }
 
-        VboxCanva vueCanvas = new VboxCanva();
+        vueCanvas = new VboxCanva();
         this.getChildren().add(vueCanvas);
     }
+
     public static Player getApprenti() {
         return apprenti;
+    }
+
+    public static VboxCanva getVboxCanva() {
+        return vueCanvas;
     }
 }

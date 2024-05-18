@@ -21,8 +21,6 @@ public class LectureScenario {
             Scanner scanner = new Scanner (fichierScenario);
             Temple temple;
             while(scanner.hasNext()){
-                //LARGEUR_CANVA = 31 HAUTEU_CANVAS = 31
-                //premet de traiter tous les scénarios proposés dans l'énoncé
                 int posX = scanner.nextInt();
                 int posY = scanner.nextInt();
                 int couleur = scanner.nextInt();
