@@ -3,7 +3,7 @@ package modele;
 import modele.Position;
 
 public class Temple {
-    private final Position templePos;
+    private Position templePos;
     private int cristalCol;
     private final int templeNum;
 
@@ -28,4 +28,8 @@ public class Temple {
     public Position getPos() {
         return templePos;
     }
+
+    public void negFormat() {templePos = new Position(templePos.getAbscisse() + 12, templePos.getOrdonnee() + 12);}
+
+    public String toString() {return templePos.toString() + "\n couleur : "+ templeNum + " cristal : " + cristalCol;}
 }
