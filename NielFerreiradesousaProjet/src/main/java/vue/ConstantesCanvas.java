@@ -11,5 +11,6 @@ public interface ConstantesCanvas {
     int NB_CARRES_PAR_LIGNE = 26;
     double CARRE =Math.floor(LARGEUR_CANVAS / NB_CARRES_PAR_LIGNE);
 
+    Paint COULEUR_JOUEUR = Paint.valueOf("red");
     Paint COULEUR_CANVAS = Paint.valueOf("black");
 }

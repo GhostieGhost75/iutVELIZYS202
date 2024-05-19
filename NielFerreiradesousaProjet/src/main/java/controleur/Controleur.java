@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 import modele.LectureScenario;
+import modele.Player;
 import modele.Temple;
 import vue.VBoxRoot;
 import vue.VboxCanva;
@@ -23,6 +24,8 @@ public class Controleur implements EventHandler {
             VBoxRoot.getApprenti().setTemples(temples);
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
+            Player joueur = new Player();
+            vboxCanva.afficherJoueur(joueur);
             for (Temple temple : temples) {
                 System.out.println("Temple à la position : " + temple.getPos());
                 vboxCanva.dessinerTemple(temple);

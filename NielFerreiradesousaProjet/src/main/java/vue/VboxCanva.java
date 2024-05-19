@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import modele.Player;
 import modele.Position;
 import modele.Temple;
 import vue.ConstantesCanvas;
@@ -54,10 +55,18 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         }
     }
 
+    public void afficherJoueur(Player player){
+        Position position = player.getPlayerPos();
+        double posX = (position.getAbscisse()+1) * CARRE;
+        double posY = (position.getOrdonnee()+1) * CARRE;
+        System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
+        graphicsContext2D.setFill(COULEUR_JOUEUR);
+        graphicsContext2D.fillOval(posX,posY,CARRE,CARRE);
+    }
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
-        double posX = position.getAbscisse() * CARRE;
-        double posY = position.getOrdonnee() * CARRE;
+        double posX = position.getAbscisse() * CARRE+1;
+        double posY = position.getOrdonnee() * CARRE+1;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_CANVAS);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
