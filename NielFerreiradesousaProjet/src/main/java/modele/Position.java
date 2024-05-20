@@ -1,6 +1,6 @@
 package modele;
 
-public class Position {
+public class Position implements Comparable<Position>{
     private static int nombreDePas = 0;
     private int abscisse;
     private int ordonnee;
@@ -37,4 +37,12 @@ public class Position {
     public String toString() {return "x : "+abscisse +"\ny : "+ordonnee;}
 
     public int getNombreDePas() {return nombreDePas;}
+
+    @Override
+    public int compareTo(Position parPosition) {
+        if (this.abscisse == parPosition.abscisse) {
+            return this.ordonnee-parPosition.ordonnee;
+        }
+        return this.abscisse - parPosition.abscisse;
+    }
 }

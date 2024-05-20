@@ -1,30 +1,30 @@
 package modele;
 
-import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Player {
     private Position playerPos;
     private int cristalCol;
-    private ArrayList<Temple> templeList;
+    private TreeMap<Position, Temple> templeMap;
 
     public Player() {
         playerPos = new Position(0,0);
         cristalCol = 0;
-        templeList = new ArrayList<Temple>();
+        templeMap = new TreeMap<Position, Temple>();
 
     }
 
     public Player(Position parPos, int parCris, int parPas) {
         playerPos = parPos;
         cristalCol = parCris;
-        templeList = new ArrayList<Temple>();
+        templeMap = new TreeMap<Position, Temple>();
     }
 
     public Position deplacement(Position posVoulue) {
         return new Position(0,0);
     }
 
-    public void permutation(Temple parTemple) {
+    public void permutation() {
     }
 
     public Position getPlayerPos() {
@@ -35,8 +35,8 @@ public class Player {
         return cristalCol;
     }
 
-    public void setTemples(ArrayList<Temple> temples) {
-        templeList = temples;
+    public void setTemples(TreeMap<Position, Temple> temples) {
+        templeMap = temples;
     }
 
     public int getNbPas() {

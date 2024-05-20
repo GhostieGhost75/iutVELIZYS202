@@ -34,7 +34,7 @@ class PlayerTest {
     Player joueurTest = new Player(new Position(1,1),1,0);
     int cristalTemple = templeTest.getCristal();
     int cristalJoueur = joueurTest.getCristalCol();
-    joueurTest.permutation(templeTest);
+    joueurTest.permutation();
     boolean permuT = templeTest.getCristal()==cristalJoueur;
     boolean permuP = joueurTest.getCristalCol()==cristalTemple;
     assertTrue(permuT);

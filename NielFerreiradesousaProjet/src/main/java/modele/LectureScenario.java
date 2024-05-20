@@ -3,9 +3,7 @@ package modele;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class LectureScenario {
@@ -16,8 +14,8 @@ public class LectureScenario {
      * @return une collection de temples (de la classe Temple)
      *
      */
-    public static ArrayList<Temple> lecture(File fichierScenario){
-        ArrayList<Temple> templesDuScenario  = new ArrayList<Temple>();
+    public static TreeMap<Position, Temple> lecture(File fichierScenario){
+        TreeMap<Position, Temple> templesDuScenario  = new TreeMap<Position, Temple>();
         try {
             Scanner scanner = new Scanner (fichierScenario);
             Temple temple;
@@ -30,14 +28,13 @@ public class LectureScenario {
                 int couleur = scanner.nextInt();
                 int cristal = scanner.nextInt();
                 temple = new Temple(new Position(posX, posY),couleur,cristal);
-                templesDuScenario.add(temple);
+                templesDuScenario.put(temple.getPos(),temple);
             }
             scanner.close();
             if (formatNegatif) {
-                Iterator fixer = templesDuScenario.iterator();
-                while(fixer.hasNext()) {
-                    Temple tmp = (Temple)fixer.next();
-                    tmp.negFormat();
+                Set<Position> positions = templesDuScenario.keySet();
+                for (Position pos : positions) {
+                    templesDuScenario.get(pos).negFormat();
                 }
             }
         }

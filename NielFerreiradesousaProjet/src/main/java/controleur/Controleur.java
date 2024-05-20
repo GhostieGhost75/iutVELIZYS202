@@ -5,12 +5,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 import modele.LectureScenario;
 import modele.Player;
+import modele.Position;
 import modele.Temple;
 import vue.VBoxRoot;
 import vue.VboxCanva;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Controleur implements EventHandler {
     @Override
@@ -19,16 +20,16 @@ public class Controleur implements EventHandler {
         if (userData instanceof File) {
             File fichierScenario = (File) userData;
             System.out.println("Fichier sélectionné : " + fichierScenario.getName());
-            ArrayList<Temple> temples = LectureScenario.lecture(fichierScenario);
+            TreeMap<Position, Temple> temples = LectureScenario.lecture(fichierScenario);
             System.out.println("Nombre de temples lus : " + temples.size());
             VBoxRoot.getApprenti().setTemples(temples);
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
             Player joueur = new Player();
             vboxCanva.afficherJoueur(joueur);
-            for (Temple temple : temples) {
-                System.out.println("Temple à la position : " + temple.getPos());
-                vboxCanva.dessinerTemple(temple);
+            for (Position temple : temples.keySet()) {
+                System.out.println("Temple à la position : " + temples.get(temple).getPos());
+                vboxCanva.dessinerTemple(temples.get(temple));
             }
         }
     }
