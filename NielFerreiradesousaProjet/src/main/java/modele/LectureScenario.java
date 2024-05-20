@@ -36,7 +36,8 @@ public class LectureScenario {
             if (formatNegatif) {
                 Iterator fixer = templesDuScenario.iterator();
                 while(fixer.hasNext()) {
-
+                    Temple tmp = (Temple)fixer.next();
+                    tmp.negFormat();
                 }
             }
         }
