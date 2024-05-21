@@ -56,7 +56,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
     public void afficherJoueur(Player player){
-        Position position = player.getPlayerPos();
+        Position position = player;
         double posX = (position.getAbscisse()+1) * CARRE;
         double posY = (position.getOrdonnee()+1) * CARRE;
         System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
@@ -65,8 +65,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
-        double posX = position.getAbscisse() * CARRE+1;
-        double posY = position.getOrdonnee() * CARRE+1;
+        double posX = (position.getAbscisse()+1) * CARRE;
+        double posY = (position.getOrdonnee()+1) * CARRE;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_CANVAS);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);

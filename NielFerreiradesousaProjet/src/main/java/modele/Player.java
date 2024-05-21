@@ -2,34 +2,35 @@ package modele;
 
 import java.util.TreeMap;
 
-public class Player {
-    private Position playerPos;
+public class Player extends Position {
     private int cristalCol;
     private TreeMap<Position, Temple> templeMap;
 
     public Player() {
-        playerPos = new Position(0,0);
+        super(12,12);
         cristalCol = 0;
         templeMap = new TreeMap<Position, Temple>();
 
     }
 
-    public Player(Position parPos, int parCris, int parPas) {
-        playerPos = parPos;
+    public Player(int parAbs, int parOrd, int parCris, int parPas) {
+        super(parAbs, parOrd);
         cristalCol = parCris;
         templeMap = new TreeMap<Position, Temple>();
     }
 
     public Position deplacement(Position posVoulue) {
-        return new Position(0,0);
+        while (!this.equals(posVoulue))
+            this.deplacementUneCase(posVoulue);
+        return new Position(abscisse, ordonnee);
     }
 
     public void permutation() {
+        int templeCris = templeMap.get(new Position(abscisse, ordonnee)).getCristal();
+        templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
+        cristalCol = templeCris;
     }
 
-    public Position getPlayerPos() {
-        return playerPos;
-    }
 
     public int getCristalCol() {
         return cristalCol;
@@ -37,9 +38,5 @@ public class Player {
 
     public void setTemples(TreeMap<Position, Temple> temples) {
         templeMap = temples;
-    }
-
-    public int getNbPas() {
-        return playerPos.getNombreDePas();
     }
 }

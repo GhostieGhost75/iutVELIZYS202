@@ -2,8 +2,8 @@ package modele;
 
 public class Position implements Comparable<Position>{
     private static int nombreDePas = 0;
-    private int abscisse;
-    private int ordonnee;
+    protected int abscisse;
+    protected int ordonnee;
 
     public Position(int parAbs, int parOrd) {
         this.abscisse = parAbs;
@@ -27,7 +27,6 @@ public class Position implements Comparable<Position>{
                 this.ordonnee += 1;
             }
         }
-        return;
     }
 
     public int getAbscisse() {return abscisse;}
