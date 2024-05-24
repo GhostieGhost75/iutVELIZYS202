@@ -1,19 +1,26 @@
 package vue;
 
 import controleur.Controleur;
+import javafx.application.Platform;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
+import javafx.scene.paint.Paint;
 import modele.Player;
+import modele.Position;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class VBoxRoot extends VBox implements ConstantesCanvas {
     private static Player apprenti;
     private static Controleur controleur;
     private static VboxCanva vueCanvas;
+    public GraphicsContext graphicsContext2D;
 
     public VBoxRoot() {
         apprenti = new Player();
@@ -40,6 +47,7 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
         vueCanvas = new VboxCanva();
         this.getChildren().add(vueCanvas);
     }
+
 
     public static Player getApprenti() {
         return apprenti;

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import modele.Player;
 import modele.Position;
 import modele.Temple;
@@ -28,7 +29,16 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         VBox.setMargin(labelNombreDePas, new Insets(30));
         this.getChildren().add(canvasCarte);
         VBox.setMargin(canvasCarte, new Insets(30));
-    }
+}
+public void cliquemouv(Position positionApprenti,Player player){
+        canvasCarte.setOnMouseClicked(event ->{
+            this.afficherJoueur(player);
+            double abscisse = (double) event.getX() /CARRE;
+            double ordonnee = (double) event.getY() /CARRE;
+            Position positionCliquee = new Position((int) abscisse, (int) ordonnee);
+            Deplacement(positionApprenti,positionCliquee,player);
+
+    });}
 
     public void dessinerGrille() {
         graphicsContext2D.setStroke(COULEUR_CANVAS);
@@ -55,13 +65,20 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         }
     }
 
+
     public void afficherJoueur(Player player){
         Position position = player;
         double posX = (position.getAbscisse()+1) * CARRE;
         double posY = (position.getOrdonnee()+1) * CARRE;
-        System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_JOUEUR);
         graphicsContext2D.fillOval(posX,posY,CARRE,CARRE);
+        System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
+
+    }
+    public void Deplacement(Position positionApprenti, Position positionvoulue,Player player){
+        while (!positionApprenti.equals(positionvoulue)){
+            positionApprenti.deplacementUneCase(positionvoulue);
+        }
     }
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
