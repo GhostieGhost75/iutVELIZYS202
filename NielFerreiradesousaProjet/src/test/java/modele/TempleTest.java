@@ -17,6 +17,9 @@ class TempleTest {
         assertTrue(test1);
         assertTrue(test2);
         assertTrue(test3);
+        System.out.println(templeTest.getPos());
+        System.out.println(templeTest.getCristal());
+        System.out.println(templeTest.getNum());
     }
 
 }

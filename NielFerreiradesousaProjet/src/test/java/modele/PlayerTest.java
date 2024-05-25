@@ -17,16 +17,21 @@ class PlayerTest {
         assertTrue(equals);
         assertTrue(equals2);
         assertTrue(equals3);
+        System.out.println(joueurTest.getAbscisse());
+        System.out.println(joueurTest.getOrdonnee());
+        System.out.println(joueurTest.getCristalCol());
+        System.out.println(joueurTest.getNombreDePas());
 
     }
 
     @Test
     void deplacement() {
-        Position[] resultat = {new Position(12,12),new Position(12,15),new Position(9,12),new Position(12,9),new Position(15,15),new Position(9,9),new Position(15,9),new Position(9,15)}; // Les résultats attendus
+        Position[] resultat = {new Position(15,12),new Position(12,15),new Position(9,12),new Position(12,9),new Position(15,15),new Position(9,9),new Position(15,9),new Position(9,15)}; // Les résultats attendus
         Player joueurtest = new Player();
         for (Position position : resultat) {
             boolean b = (joueurtest.deplacement(position)).equals(joueurtest);
             assertTrue(b);
+            System.out.println(joueurtest);
         }
     }
 
@@ -45,6 +50,8 @@ class PlayerTest {
     boolean permuP = joueurTest.getCristalCol()==cristalTemple;
     assertTrue(permuT);
     assertTrue(permuP);
+        System.out.println(templeTest.getCristal());
+        System.out.println(joueurTest.getCristalCol());
 
 
     }
