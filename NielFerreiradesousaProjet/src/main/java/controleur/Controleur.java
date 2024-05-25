@@ -25,8 +25,8 @@ public class Controleur implements EventHandler {
             VBoxRoot.getApprenti().setTemples(temples);
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
-            Player joueur = new Player();
-            vboxCanva.cliquemouv(new Position(joueur.getAbscisse(), joueur.getOrdonnee()),joueur);
+            Player joueur = VBoxRoot.getApprenti();
+            vboxCanva.cliquemouv(new Position(joueur.getAbscisse(), joueur.getOrdonnee()), joueur);
             vboxCanva.afficherJoueur(joueur);
 
             for (Position temple : temples.keySet()) {
@@ -35,4 +35,5 @@ public class Controleur implements EventHandler {
             }
         }
     }
+
 }

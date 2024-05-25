@@ -1,16 +1,21 @@
 package vue;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.util.Duration;
 import modele.Player;
 import modele.Position;
 import modele.Temple;
 import vue.ConstantesCanvas;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 
 public class VboxCanva extends VBox implements ConstantesCanvas {
     public Canvas canvasCarte;
@@ -29,16 +34,54 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         VBox.setMargin(labelNombreDePas, new Insets(30));
         this.getChildren().add(canvasCarte);
         VBox.setMargin(canvasCarte, new Insets(30));
-}
-public void cliquemouv(Position positionApprenti,Player player){
-        canvasCarte.setOnMouseClicked(event ->{
-            this.afficherJoueur(player);
-            double abscisse = (double) event.getX() /CARRE;
-            double ordonnee = (double) event.getY() /CARRE;
-            Position positionCliquee = new Position((int) abscisse, (int) ordonnee);
-            Deplacement(positionApprenti,positionCliquee,player);
+    }
 
-    });}
+
+    public void cliquemouv(Position positionApprenti, Player player) {
+        canvasCarte.setOnMouseClicked(event -> {
+            double abscisse = event.getX() / CARRE;
+            double ordonnee = event.getY() / CARRE;
+            Position positionCliquee = new Position((int) abscisse, (int) ordonnee);
+
+            // Stockez une référence au Timer dans une variable locale
+            Timer timer = new Timer();
+
+            // Créez une tâche Timer pour le déplacement
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        player.deplacementUneCase(positionCliquee);
+
+                        // Effacer l'ancienne position du joueur
+                        effacerPosition(positionApprenti);
+
+                        // Mettre à jour l'interface graphique pour la nouvelle position
+                        afficherJoueur(player);
+
+                        // Mettre à jour le nombre de pas
+                        labelNombreDePas.setText("Nombre de pas : " + player.getNombreDePas());
+
+                        // Mettre à jour la position de l'apprenti
+                        positionApprenti.setAbscisse(player.getAbscisse());
+                        positionApprenti.setOrdonnee(player.getOrdonnee());
+
+                        // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
+                        if (!positionApprenti.equals(positionCliquee)) {
+                            // Répéter la tâche toutes les secondes
+                            timer.schedule(this, 100);
+                        } else {
+                            timer.cancel();
+                        }
+                    });
+                }
+            };
+            timer.schedule(task, 0, 100); // Démarrage initial immédiat, puis répétition toutes les secondes
+        });
+    }
+
+
+
 
     public void dessinerGrille() {
         graphicsContext2D.setStroke(COULEUR_CANVAS);
@@ -65,33 +108,34 @@ public void cliquemouv(Position positionApprenti,Player player){
         }
     }
 
-
-    public void afficherJoueur(Player player){
-        Position position = player;
+    public void afficherJoueur(Player player) {
+        Position position = new Position(player.getAbscisse(), player.getOrdonnee());
         double posX = (position.getAbscisse()+1) * CARRE;
-        double posY = (position.getOrdonnee()+1) * CARRE;
+        double posY = (position.getOrdonnee()+1)* CARRE;
         graphicsContext2D.setFill(COULEUR_JOUEUR);
-        graphicsContext2D.fillOval(posX,posY,CARRE,CARRE);
+        graphicsContext2D.fillOval(posX, posY, CARRE, CARRE);
         System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
+    }
 
-    }
-    public void Deplacement(Position positionApprenti, Position positionvoulue,Player player){
-        while (!positionApprenti.equals(positionvoulue)){
-            positionApprenti.deplacementUneCase(positionvoulue);
-        }
-    }
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
-        double posX = (position.getAbscisse()+1) * CARRE;
+        double posX = (position.getAbscisse() +1)* CARRE;
         double posY = (position.getOrdonnee()+1) * CARRE;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_CANVAS);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
     }
 
-
     public void effacerTout() {
         graphicsContext2D.clearRect(0, 0, LARGEUR_CANVAS, HAUTEUR_CANVAS);
         dessinerGrille();
+    }
+
+    public void effacerPosition(Position position) {
+        double posX = position.getAbscisse() * CARRE;
+        double posY = position.getOrdonnee() * CARRE;
+        graphicsContext2D.clearRect(posX, posY, CARRE, CARRE);
+        graphicsContext2D.setStroke(COULEUR_CANVAS);
+        graphicsContext2D.strokeRect(posX, posY, CARRE, CARRE);
     }
 }

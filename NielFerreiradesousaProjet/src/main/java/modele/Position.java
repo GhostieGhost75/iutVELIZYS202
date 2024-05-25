@@ -35,7 +35,7 @@ public class Position implements Comparable<Position>{
 
     public String toString() {return "x : "+abscisse +"\ny : "+ordonnee;}
 
-    public int getNombreDePas() {return nombreDePas;}
+    public static int getNombreDePas() {return nombreDePas;}
 
     @Override
     public int compareTo(Position parPosition) {
@@ -43,5 +43,13 @@ public class Position implements Comparable<Position>{
             return this.ordonnee-parPosition.ordonnee;
         }
         return this.abscisse - parPosition.abscisse;
+    }
+
+    public void setAbscisse(int parabscisse) {
+        this.abscisse=parabscisse;
+    }
+
+    public void setOrdonnee(int parordonnee) {
+        this.ordonnee = parordonnee;
     }
 }

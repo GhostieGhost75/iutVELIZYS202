@@ -2,6 +2,8 @@ package modele;
 
 import java.util.TreeMap;
 
+import static java.lang.Thread.sleep;
+
 public class Player extends Position {
     private int cristalCol;
     private TreeMap<Position, Temple> templeMap;
@@ -19,7 +21,7 @@ public class Player extends Position {
         templeMap = new TreeMap<Position, Temple>();
     }
 
-    public Position deplacement(Position posVoulue) {
+    public Position deplacement(Position posVoulue)  {
         while (!this.equals(posVoulue))
             this.deplacementUneCase(posVoulue);
         return new Position(abscisse, ordonnee);
@@ -39,4 +41,8 @@ public class Player extends Position {
     public void setTemples(TreeMap<Position, Temple> temples) {
         templeMap = temples;
     }
+    public TreeMap<Position, Temple> getTemples() {
+        return templeMap;
+    }
+
 }
