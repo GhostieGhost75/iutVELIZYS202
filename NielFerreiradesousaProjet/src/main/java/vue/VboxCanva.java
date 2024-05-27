@@ -39,8 +39,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     public void cliquemouv(Position positionApprenti, Player player) {
         canvasCarte.setOnMouseClicked(event -> {
-            double abscisse = event.getX() / CARRE;
-            double ordonnee = event.getY() / CARRE;
+            double abscisse = (event.getX() / CARRE)-1;
+            double ordonnee = (event.getY() / CARRE)-1;
             Position positionCliquee = new Position((int) abscisse, (int) ordonnee);
 
             // Stockez une référence au Timer dans une variable locale
@@ -119,8 +119,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
-        double posX = (position.getAbscisse() +1)* CARRE;
-        double posY = (position.getOrdonnee()+1) * CARRE;
+        double posX = (position.getAbscisse() + 1) * CARRE;
+        double posY = (position.getOrdonnee() + 1) * CARRE;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_CANVAS);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
@@ -132,8 +132,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
     public void effacerPosition(Position position) {
-        double posX = position.getAbscisse() * CARRE;
-        double posY = position.getOrdonnee() * CARRE;
+        double posX = (position.getAbscisse() + 1) * CARRE;
+        double posY = (position.getOrdonnee() + 1) * CARRE;
         graphicsContext2D.clearRect(posX, posY, CARRE, CARRE);
         graphicsContext2D.setStroke(COULEUR_CANVAS);
         graphicsContext2D.strokeRect(posX, posY, CARRE, CARRE);
