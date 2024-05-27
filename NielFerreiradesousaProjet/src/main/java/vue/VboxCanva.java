@@ -122,7 +122,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         double posX = (position.getAbscisse() + 1) * CARRE;
         double posY = (position.getOrdonnee() + 1) * CARRE;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
-        graphicsContext2D.setFill(COULEUR_CANVAS);
+        graphicsContext2D.setFill(COULEUR_TEMPLES[temple.getNum()]);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
     }
 
