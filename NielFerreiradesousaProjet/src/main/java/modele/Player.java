@@ -9,7 +9,7 @@ public class Player extends Position {
     private TreeMap<Position, Temple> templeMap;
 
     public Player() {
-        super(12,12);
+        super(15,15);
         cristalCol = 0;
         templeMap = new TreeMap<Position, Temple>();
 
@@ -32,7 +32,11 @@ public class Player extends Position {
         templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
         cristalCol = templeCris;
     }
-
+    public void reset(){
+        this.abscisse=15;
+        this.ordonnee=15;
+        setNombreDePas(0);
+    }
 
     public int getCristalCol() {
         return cristalCol;

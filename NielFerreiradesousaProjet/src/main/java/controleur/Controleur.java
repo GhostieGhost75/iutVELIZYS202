@@ -22,17 +22,22 @@ public class Controleur implements EventHandler {
             System.out.println("Fichier sélectionné : " + fichierScenario.getName());
             TreeMap<Position, Temple> temples = LectureScenario.lecture(fichierScenario);
             System.out.println("Nombre de temples lus : " + temples.size());
+
             VBoxRoot.getApprenti().setTemples(temples);
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
             Player joueur = VBoxRoot.getApprenti();
+            joueur.reset();
+            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getNombreDePas());
             vboxCanva.cliquemouv(new Position(joueur.getAbscisse(), joueur.getOrdonnee()), joueur);
+            vboxCanva.effacerTout();
             vboxCanva.afficherJoueur(joueur);
-
             for (Position temple : temples.keySet()) {
                 System.out.println("Temple à la position : " + temples.get(temple).getPos());
                 vboxCanva.dessinerTemple(temples.get(temple));
             }
+
+
         }
     }
 
