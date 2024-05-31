@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class Algorithmes {
 
-    public static LinkedList<Position> TriInsert(Player parPlayer) {
+    public static LinkedList<Position> TriSelect(Player parPlayer) {
         TreeMap<Position, Temple> templeMap = parPlayer.getTemples();
         Temple [] temples = new Temple[templeMap.keySet().size()];
         LinkedList<Position> parcours = new LinkedList<>();

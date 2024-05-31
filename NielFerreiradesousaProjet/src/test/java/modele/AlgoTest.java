@@ -3,7 +3,6 @@ package modele;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
@@ -11,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AlgoTest {
     @Test
-    void TriInsert() {
+    void TriSelect() {
         Player joueur = new Player();
         TreeMap<Position, Temple> templesTest = LectureScenario.lecture(new File("maps/scenario1.txt"));
         LinkedList<Position> posVoulues = new LinkedList<>();
@@ -25,9 +24,9 @@ public class AlgoTest {
         };
         for (Position pos:posVouluesTab)
             posVoulues.add(pos);
-        LinkedList<Position> resultatInsert = Algorithmes.TriInsert(joueur);
-        while (resultatInsert.size() != 0)
-            assert(resultatInsert.poll()==posVoulues.poll());
+        LinkedList<Position> resultatSelect = Algorithmes.TriSelect(joueur);
+        while (resultatSelect.size() != 0)
+            assert(resultatSelect.poll()==posVoulues.poll());
     }
 
 }
