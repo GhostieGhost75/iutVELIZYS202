@@ -3,10 +3,7 @@ package controleur;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
-import modele.LectureScenario;
-import modele.Player;
-import modele.Position;
-import modele.Temple;
+import modele.*;
 import vue.VBoxRoot;
 import vue.VboxCanva;
 
