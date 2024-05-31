@@ -9,6 +9,7 @@ import modele.Position;
 import modele.Temple;
 import vue.VBoxRoot;
 import vue.VboxCanva;
+import vue.VueModemanuel;
 
 import java.io.File;
 import java.util.TreeMap;
@@ -22,7 +23,6 @@ public class Controleur implements EventHandler {
             System.out.println("Fichier sélectionné : " + fichierScenario.getName());
             TreeMap<Position, Temple> temples = LectureScenario.lecture(fichierScenario);
             System.out.println("Nombre de temples lus : " + temples.size());
-
             VBoxRoot.getApprenti().setTemples(temples);
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
