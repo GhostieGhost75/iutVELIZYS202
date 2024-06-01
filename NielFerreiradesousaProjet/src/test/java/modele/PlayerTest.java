@@ -11,7 +11,7 @@ class PlayerTest {
         int numcristal=0;
         int NbPas=0;
         Player joueurTest = new Player();
-        boolean equals = joueurTest.equals(new Position(12,12));
+        boolean equals = joueurTest.equals(new Position(15,15));
         boolean equals2 = joueurTest.getCristalCol()==numcristal;
         boolean equals3 = joueurTest.getNombreDePas()==NbPas;
         assertTrue(equals);
@@ -26,7 +26,7 @@ class PlayerTest {
 
     @Test
     void deplacement() {
-        Position[] resultat = {new Position(15,12),new Position(12,15),new Position(9,12),new Position(12,9),new Position(15,15),new Position(9,9),new Position(15,9),new Position(9,15)}; // Les résultats attendus
+        Position[] resultat = {new Position(17,15),new Position(15,17),new Position(12,15),new Position(15,12),new Position(17,17),new Position(12,12),new Position(17,12),new Position(12,17)}; // Les résultats attendus
         Player joueurtest = new Player();
         for (Position position : resultat) {
             boolean b = (joueurtest.deplacement(position)).equals(joueurtest);
