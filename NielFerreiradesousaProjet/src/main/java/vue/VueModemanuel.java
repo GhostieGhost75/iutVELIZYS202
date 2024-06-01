@@ -3,9 +3,10 @@ package vue;
 import controleur.Controleur;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class VueModemanuel extends VBox {
+public class VueModemanuel extends HBox {
     Controleur controleur;
     Label labelmanuel;
     Button boutonPermutation;

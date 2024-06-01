@@ -4,10 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 import modele.LectureScenario;
 import modele.Player;
 import modele.Position;
 import modele.Temple;
+import vue.StackpaneMode;
 import vue.VBoxRoot;
 import vue.VboxCanva;
 import vue.VueModemanuel;
@@ -40,6 +42,14 @@ public class Controleur implements EventHandler {
 
 
         }
+    }
+    public void handleMenuItemActionManuel(Event event){
+        StackpaneMode stackpaneMode = VBoxRoot.getStackpaneMode();
+        stackpaneMode.getChildren().get(0).toFront();
+    }
+    public void handleMenuItemActionHeuristique(Event event){
+        StackpaneMode stackpaneMode = VBoxRoot.getStackpaneMode();
+        stackpaneMode.getChildren().get(1).toFront();
     }
 
     public void handleButtonClick(ActionEvent event) {
