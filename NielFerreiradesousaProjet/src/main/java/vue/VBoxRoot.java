@@ -20,6 +20,8 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
     private static Player apprenti;
     private static Controleur controleur;
     private static VboxCanva vueCanvas;
+
+    private static VueModemanuel vueModemanuel;
     public GraphicsContext graphicsContext2D;
 
     public VBoxRoot() {
@@ -45,7 +47,9 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
         }
 
         vueCanvas = new VboxCanva();
+        vueModemanuel = new VueModemanuel();
         this.getChildren().add(vueCanvas);
+        this.getChildren().add(vueModemanuel);
     }
 
 

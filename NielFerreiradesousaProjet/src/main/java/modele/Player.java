@@ -28,9 +28,12 @@ public class Player extends Position {
     }
 
     public void permutation() {
-        int templeCris = templeMap.get(new Position(abscisse, ordonnee)).getCristal();
-        templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
-        cristalCol = templeCris;
+        Position positionjoueur = new Position(abscisse,ordonnee);
+        if (this.getTemples().containsKey(positionjoueur)){
+            int templeCris = templeMap.get(positionjoueur).getCristal();
+            templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
+            cristalCol = templeCris;
+            ;}
     }
     public void reset(){
         this.abscisse=15;

@@ -70,6 +70,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         positionApprenti.setOrdonnee(player.getOrdonnee());
 
 
+
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
                         if (!positionApprenti.equals(positionCliquee)) {
                             // Répéter la tâche toutes les secondes
@@ -82,6 +83,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             };
             timer.schedule(task, 0, 100); // Démarrage initial immédiat, puis répétition toutes les secondes
         });
+
     }
 
 
