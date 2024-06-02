@@ -59,7 +59,7 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
         menuItemModeManuel.setOnAction(event -> controleur.handleMenuItemActionManuel(event));
         MenuItem menuItemModeHeuristique = new MenuItem("modeHeuristique");
         menuMode.getItems().add(menuItemModeHeuristique);
-        menuItemModeManuel.setOnAction(event -> controleur.handleMenuItemActionHeuristique(event));
+        menuItemModeHeuristique.setOnAction(event -> controleur.handleMenuItemActionHeuristique(event));
         stackpaneMode =new StackpaneMode();
         this.getChildren().add(stackpaneMode);
     }

@@ -3,10 +3,13 @@ package vue;
 import controleur.Controleur;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 
-public class VueModemanuel extends HBox {
+public class VueModemanuel extends VBox {
     Controleur controleur;
     Label labelmanuel;
     Button boutonPermutation;
@@ -17,6 +20,7 @@ public class VueModemanuel extends HBox {
        boutonPermutation.setOnAction(event -> controleur.handleButtonClick(event));
        this.getChildren().add(labelmanuel);
        this.getChildren().add(boutonPermutation);
+
     }
 
 }

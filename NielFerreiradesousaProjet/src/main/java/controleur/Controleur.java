@@ -45,11 +45,19 @@ public class Controleur implements EventHandler {
     }
     public void handleMenuItemActionManuel(Event event){
         StackpaneMode stackpaneMode = VBoxRoot.getStackpaneMode();
-        stackpaneMode.getChildren().get(0).toFront();
+        if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModemanuel())){
+            stackpaneMode.getChildren().get(0).toFront();}
+        System.out.println(stackpaneMode.getChildren());
+
+
     }
     public void handleMenuItemActionHeuristique(Event event){
         StackpaneMode stackpaneMode = VBoxRoot.getStackpaneMode();
-        stackpaneMode.getChildren().get(1).toFront();
+        if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getvuemodeHeuristique())) {
+            stackpaneMode.getChildren().get(0).toFront();
+        }
+        System.out.println(stackpaneMode.getChildren());
+
     }
 
     public void handleButtonClick(ActionEvent event) {

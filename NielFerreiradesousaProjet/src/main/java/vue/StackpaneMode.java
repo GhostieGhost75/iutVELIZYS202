@@ -1,21 +1,26 @@
 package vue;
 
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
 
 public class StackpaneMode extends StackPane {
-    VueModemanuel vuemodemanuel;
+    VueModemanuel vueModemanuel;
+    VueModeAlgoHeuristique vueModeAlgoHeuristique;
 
     StackpaneMode(){
-        vuemodemanuel =new VueModemanuel();
-        this.getChildren().add(vuemodemanuel);
+
+        vueModemanuel =new VueModemanuel();
+        vueModemanuel.setStyle("-fx-background-color: #f4f4f4");
+        vueModeAlgoHeuristique= new VueModeAlgoHeuristique();
+        vueModeAlgoHeuristique.setStyle("-fx-background-color: #f4f4f4");
+        this.getChildren().add(vueModemanuel);
+        this.getChildren().add(vueModeAlgoHeuristique);
     }
 
+    public VueModemanuel getVueModemanuel() {
+        return vueModemanuel;
+    }
+
+    public VueModeAlgoHeuristique getvuemodeHeuristique() {
+        return vueModeAlgoHeuristique;
+    }
 }
