@@ -33,7 +33,7 @@ public class Position implements Comparable<Position>{
 
     public int getOrdonnee() {return ordonnee;}
 
-    public String toString() {return "x : "+abscisse +"\ny : "+ordonnee;}
+    public String toString() {return "x : "+abscisse +"  y : "+ordonnee+"\n";}
 
     public static int getNombreDePas() {return nombreDePas;}
 
