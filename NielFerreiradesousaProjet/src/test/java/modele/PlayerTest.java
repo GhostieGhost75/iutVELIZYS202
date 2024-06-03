@@ -11,28 +11,12 @@ class PlayerTest {
         int numcristal=0;
         int NbPas=0;
         Player joueurTest = new Player();
-        boolean equals = joueurTest.equals(new Position(15,15));
+        boolean equals = joueurTest.getPosPlayer().equals(new Position(15,15));
         boolean equals2 = joueurTest.getCristalCol()==numcristal;
-        boolean equals3 = joueurTest.getNombreDePas()==NbPas;
+        boolean equals3 = joueurTest.getPosPlayer().getNombreDePas()==NbPas;
         assertTrue(equals);
         assertTrue(equals2);
         assertTrue(equals3);
-        System.out.println(joueurTest.getAbscisse());
-        System.out.println(joueurTest.getOrdonnee());
-        System.out.println(joueurTest.getCristalCol());
-        System.out.println(joueurTest.getNombreDePas());
-
-    }
-
-    @Test
-    void deplacement() {
-        Position[] resultat = {new Position(18,15),new Position(15,18),new Position(12,15),new Position(15,12),new Position(18,18),new Position(12,12),new Position(18,12),new Position(12,18)}; // Les résultats attendus
-        Player joueurtest = new Player();
-        for (Position position : resultat) {
-            boolean b = (joueurtest.deplacement(position)).equals(joueurtest);
-            assertTrue(b);
-            System.out.println(joueurtest);
-        }
     }
 
     @Test
@@ -52,8 +36,20 @@ class PlayerTest {
     assertTrue(permuP);
         System.out.println(templeTest.getCristal());
         System.out.println(joueurTest.getCristalCol());
+    }
 
-
+    @Test
+    void distancePos() {
+        Position pos1 = new Position(5,5);
+        Position pos2 = new Position(4,4);
+        Position pos3 = new Position(7,7);
+        Position pos4 = new Position(6,3);
+        Position pos5 = new Position (3,6);
+        assertEquals(pos1.distancePos(pos1), 0);
+        assertEquals(pos1.distancePos(pos2), 2);
+        assertEquals(pos1.distancePos(pos3), 4);
+        assertEquals(pos1.distancePos(pos4), 3);
+        assertEquals(pos1.distancePos(pos5), 3);
     }
 
 }

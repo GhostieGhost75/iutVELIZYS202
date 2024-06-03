@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TempleTest {
     @Test
     void Temple() {
-        int numTemple=5;
-        int numCristal=2;
+        int numTemple=2;
+        int numCristal=5;
         Position positionTemple = new Position(5,5);
         Temple templeTest= new Temple(new Position(5,5),2,5);
         boolean test1 = templeTest.getPos().equals(positionTemple);
