@@ -29,7 +29,5 @@ public class Temple {
         return templePos;
     }
 
-    public void negFormat() {templePos = new Position(templePos.getAbscisse() + 15, templePos.getOrdonnee() + 15);}
-
     public String toString() {return templePos.toString() + "\n couleur : "+ templeNum + " cristal : " + cristalCol;}
 }
