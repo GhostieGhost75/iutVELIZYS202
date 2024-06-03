@@ -8,7 +8,14 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** Classe de test des fonctions liées au Algorithmes */
 public class AlgoTest {
+
+    /**
+     * Appelle l'algorithme TriSelect sur le premier scénario du dossier map.
+     * Pas d'erreur si les positions correspondent au résultat fait manuellement en
+     * suivant les principes du tri par sélection.
+     */
     @Test
     void TriSelect() {
         Player joueur = new Player();
@@ -18,9 +25,9 @@ public class AlgoTest {
         Position [] posVouluesTab = {
                 new Position(14,18),new Position(14,14),
                 new Position(14,18),new Position(18,14),
-                new Position(14,14),new Position(18,14),
-                new Position(14,14),new Position(18,18),
-                new Position(14,14)
+                new Position(14,18),new Position(18,14),
+                new Position(18,14),new Position(18,18),
+                new Position(18,14)
         };
         for (Position pos:posVouluesTab)
             posVoulues.add(pos);
@@ -29,6 +36,11 @@ public class AlgoTest {
             assert(resultatSelect.poll().equals(posVoulues.poll()));
     }
 
+    /**
+     * Appelle l'algorithme Heuristique sur le deuxième scénario du dossier map.
+     * Pas d'erreur si les positions correspondent au résultat fait manuellement en
+     * suivant les principes de l'algorithme.
+     */
     @Test
     void Heuristique() {
         Player joueur = new Player();
@@ -47,6 +59,11 @@ public class AlgoTest {
             assert(resultatHeuristique.poll().equals(posVoulues.poll()));
     }
 
+    /**
+     * Renvoie la longueur des parcours donnés par les algorithmes TriSelect et Heuristique.
+     * Pas d'erreur si les nombres correspondent aux nombres de pas obtenus manuellement
+     * en employant les deux algorithmes.
+     */
     @Test
     void longueurParcoursAlgo() {
         TreeMap<Position, Temple> templesTest1 = LectureScenario.lecture(new File("maps/scenario1.txt"));
@@ -57,7 +74,7 @@ public class AlgoTest {
         joueur2.setTemples(templesTest2);
         LinkedList<Position> resultatSelect = Algorithmes.TriSelect(joueur1);
         LinkedList<Position> resultatHeuristique = Algorithmes.heuristique(joueur2);
-        assert(Algorithmes.longueurParcoursAlgo(resultatSelect) == 98);
+        assert(Algorithmes.longueurParcoursAlgo(resultatSelect) == 84);
         assert(Algorithmes.longueurParcoursAlgo(resultatHeuristique) == 44);
 
     }

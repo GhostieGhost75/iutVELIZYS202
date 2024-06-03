@@ -4,7 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Classe de test des fonctions liées aux temples (classe Temple) */
 class TempleTest {
+
+    /**
+     * Crée un objet Temple.
+     * Pas d'erreur si l'objet correspond aux attentes.
+     */
     @Test
     void Temple() {
         int numTemple=2;

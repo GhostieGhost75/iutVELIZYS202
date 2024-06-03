@@ -5,7 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/** Classe de test des fonctions liées au joueur (classe Player) */
 class PlayerTest {
+
+    /**
+     * Crée un objet Player.
+     * Pas d'erreur si l'objet correspond aux attentes.
+     */
     @Test
     void Player() {
         int numcristal = 0;
@@ -13,12 +20,16 @@ class PlayerTest {
         Player joueurTest = new Player();
         boolean equals = joueurTest.getPosPlayer().equals(new Position(15, 15));
         boolean equals2 = joueurTest.getCristalCol() == numcristal;
-        boolean equals3 = joueurTest.getPosPlayer().getNombreDePas() == NbPas;
+        boolean equals3 = Position.getNombreDePas() == NbPas;
         assertTrue(equals);
         assertTrue(equals2);
         assertTrue(equals3);
     }
 
+    /**
+     * Vérifie le bon fonctionnement de la fonction permutation.
+     * Pas d'erreur si la permutation est réussie.
+     */
     @Test
     void permutation() {
     Temple templeTest = new Temple(new Position(1,1),2,3);
@@ -38,6 +49,10 @@ class PlayerTest {
         System.out.println(joueurTest.getCristalCol());
     }
 
+    /**
+     * Vérifie le bon fonctionnement de la fonction donnant l'écart entre deux positions.
+     * Pas d'erreur si chaque distance est correcte.
+     */
     @Test
     void distancePos() {
         Position pos1 = new Position(5,5);
