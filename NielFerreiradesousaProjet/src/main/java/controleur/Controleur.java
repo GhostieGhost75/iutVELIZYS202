@@ -26,8 +26,8 @@ public class Controleur implements EventHandler {
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
             joueur.reset();
-            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getNombreDePas());
-            vboxCanva.cliquemouv(new Position(joueur.getAbscisse(), joueur.getOrdonnee()), joueur);
+            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getPosPlayer().getNombreDePas());
+            vboxCanva.cliquemouv(joueur);
             vboxCanva.effacerTout();
             vboxCanva.afficherJoueur(joueur);
             for (Position temple : temples.keySet()) {

@@ -37,7 +37,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
 
-    public void cliquemouv(Position positionApprenti, Player player) {
+    public void cliquemouv(Player player) {
         canvasCarte.setOnMouseClicked(event -> {
             double abscisse = (event.getX() / CARRE)-1;
             double ordonnee = (event.getY() / CARRE)-1;
@@ -51,7 +51,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        player.deplacementUneCase(positionCliquee);
+                        player.getPosPlayer().deplacementUneCase(positionCliquee);
 
                         effacerTout();
                         for (Position temple : player.getTemples().keySet()) {
@@ -63,16 +63,14 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         afficherJoueur(player);
 
                         // Mettre à jour le nombre de pas
-                        labelNombreDePas.setText("Nombre de pas : " + player.getNombreDePas());
+                        labelNombreDePas.setText("Nombre de pas : " + player.getPosPlayer().getNombreDePas());
 
                         // Mettre à jour la position de l'apprenti
-                        positionApprenti.setAbscisse(player.getAbscisse());
-                        positionApprenti.setOrdonnee(player.getOrdonnee());
 
 
 
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
-                        if (!positionApprenti.equals(positionCliquee)) {
+                        if (!player.getPosPlayer().equals(positionCliquee)) {
                             // Répéter la tâche toutes les secondes
                             timer.schedule(this, 100);
                         } else {
@@ -116,7 +114,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
     public void afficherJoueur(Player player) {
-        Position position = new Position(player.getAbscisse(), player.getOrdonnee());
+        Position position = player.getPosPlayer();
         double posX = (position.getAbscisse()+1) * CARRE;
         double posY = (position.getOrdonnee()+1)* CARRE;
         graphicsContext2D.setFill(COULEUR_JOUEUR);
@@ -125,7 +123,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         afficher_cristal_apprenti(player);
     }
     public void afficher_cristal_apprenti(Player player){
-        Position pos= new Position(player.getAbscisse(), player.getOrdonnee());
+        Position pos= player.getPosPlayer();
         double posX = (pos.getAbscisse()+1) * CARRE;
         double posY = (pos.getOrdonnee()+1)* CARRE;
         graphicsContext2D.setFill(COULEUR_TEMPLES[player.getCristalCol()]);
