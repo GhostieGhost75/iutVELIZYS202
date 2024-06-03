@@ -5,6 +5,7 @@ import javafx.scene.layout.StackPane;
 public class StackpaneMode extends StackPane {
     VueModemanuel vueModemanuel;
     VueModeAlgoHeuristique vueModeAlgoHeuristique;
+    VueModeAlgoTriselection vueModeAlgoTriselection;
 
     StackpaneMode(){
 
@@ -12,8 +13,11 @@ public class StackpaneMode extends StackPane {
         vueModemanuel.setStyle("-fx-background-color: #f4f4f4");
         vueModeAlgoHeuristique= new VueModeAlgoHeuristique();
         vueModeAlgoHeuristique.setStyle("-fx-background-color: #f4f4f4");
+        vueModeAlgoTriselection=new VueModeAlgoTriselection();
+        vueModeAlgoTriselection.setStyle("-fx-background-color: #f4f4f4");
         this.getChildren().add(vueModemanuel);
         this.getChildren().add(vueModeAlgoHeuristique);
+        this.getChildren().add(vueModeAlgoTriselection);
     }
 
     public VueModemanuel getVueModemanuel() {
@@ -23,4 +27,6 @@ public class StackpaneMode extends StackPane {
     public VueModeAlgoHeuristique getvuemodeHeuristique() {
         return vueModeAlgoHeuristique;
     }
+
+    public VueModeAlgoTriselection getVueModeAlgoTriselection() {return vueModeAlgoTriselection;}
 }

@@ -28,6 +28,9 @@ public class Position implements Comparable<Position>{
             }
         }
     }
+    public void incrementerNombreDePas() {
+        nombreDePas++;
+    }
 
     public int getAbscisse() {return abscisse;}
 

@@ -1,22 +1,18 @@
 package vue;
 
 import controleur.Controleur;
-import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
-import javafx.scene.paint.Paint;
 import modele.Player;
-import modele.Position;
 
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class VBoxRoot extends VBox implements ConstantesCanvas {
+public class HBoxRoot extends HBox implements ConstantesCanvas {
 
     private static Player apprenti;
     private static Controleur controleur;
@@ -25,7 +21,7 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
     private static StackpaneMode stackpaneMode;
     public GraphicsContext graphicsContext2D;
 
-    public VBoxRoot() {
+    public HBoxRoot() {
         apprenti = new Player();
         controleur = new Controleur();
 
@@ -46,20 +42,19 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
             menuItem.setOnAction(controleur);
             menuScenarios.getItems().add(menuItem);
         }
-
         vueCanvas = new VboxCanva();
         this.getChildren().add(vueCanvas);
-        MenuBar modeBar = new MenuBar();
-        this.getChildren().add(modeBar);
-        VBox.setMargin(modeBar, new Insets(9));
         Menu menuMode = new Menu("Mode_apprenti");
-        modeBar.getMenus().add(menuMode);
+        menuBar.getMenus().add(menuMode);
         MenuItem menuItemModeManuel = new MenuItem("modeManuel");
         menuMode.getItems().add(menuItemModeManuel);
         menuItemModeManuel.setOnAction(event -> controleur.handleMenuItemActionManuel(event));
         MenuItem menuItemModeHeuristique = new MenuItem("modeHeuristique");
         menuMode.getItems().add(menuItemModeHeuristique);
         menuItemModeHeuristique.setOnAction(event -> controleur.handleMenuItemActionHeuristique(event));
+        MenuItem menuItemModeTriSelection = new MenuItem("modeTriSelect");
+        menuMode.getItems().add(menuItemModeTriSelection);
+        menuItemModeTriSelection.setOnAction(event -> controleur.handleMenuItemActionTriselect(event));
         stackpaneMode =new StackpaneMode();
         this.getChildren().add(stackpaneMode);
     }

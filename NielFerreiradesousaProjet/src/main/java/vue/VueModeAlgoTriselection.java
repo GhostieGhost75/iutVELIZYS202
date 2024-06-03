@@ -3,19 +3,19 @@ package vue;
 import controleur.Controleur;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class VueModeAlgoHeuristique extends VBox {
+public class VueModeAlgoTriselection extends VBox {
     Controleur controleur;
-    Label labelHeuristique;
+    Label labelTriselect;
     Button boutonAlgo;
-    VueModeAlgoHeuristique(){
+    VueModeAlgoTriselection(){
         controleur = new Controleur();
-        labelHeuristique =new Label("Mode >Heuristique");
+        labelTriselect =new Label("Mode_tri_selection");
         boutonAlgo = new Button("Lancement_Algo");
-        boutonAlgo.setOnAction(event -> controleur.handleButtonC(event));
-        this.getChildren().add(labelHeuristique);
+        boutonAlgo.setOnAction(event -> controleur.handleButtonCTri(event));
+        this.getChildren().add(labelTriselect);
         this.getChildren().add(boutonAlgo);
+        }
     }
-}
+

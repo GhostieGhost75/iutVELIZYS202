@@ -36,6 +36,7 @@ public class Player {
         posPlayer.setNombreDePas(0);
     }
 
+
     public int getCristalCol() {
         return cristalCol;
     }
