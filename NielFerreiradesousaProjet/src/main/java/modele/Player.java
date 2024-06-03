@@ -39,6 +39,7 @@ public class Player extends Position {
         this.abscisse=15;
         this.ordonnee=15;
         setNombreDePas(0);
+        this.cristalCol=0;
     }
 
     public int getCristalCol() {
