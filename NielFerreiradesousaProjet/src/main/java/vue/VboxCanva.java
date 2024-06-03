@@ -42,7 +42,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
             // Stockez une référence au Timer dans une variable locale
             Timer timer = new Timer();
-
             // Créez une tâche Timer pour le déplacement
             TimerTask task = new TimerTask() {
                 @Override
@@ -92,14 +91,12 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         // Calculer les pas pour se rapprocher de la position cible uniquement horizontalement ou verticalement
                         int stepX = 0;
                         int stepY = 0;
-
                         if (positionCourante.getAbscisse() != positionCible.getAbscisse()) {
                             stepX = Integer.compare(positionCible.getAbscisse(), positionCourante.getAbscisse());
                         } else if (positionCourante.getOrdonnee() != positionCible.getOrdonnee()) {
                             stepY = Integer.compare(positionCible.getOrdonnee(), positionCourante.getOrdonnee());
                         }
                         apprenti.getPosPlayer().deplacementUneCase(new Position(positionCourante.getAbscisse() + stepX,positionCourante.getOrdonnee() + stepY));
-                        // Incrémenter le nombre de pas
 
                         // Effacer l'ancienne position et redessiner les éléments
                         Platform.runLater(() -> {
@@ -120,6 +117,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                     }
                 } else {
                     // Arrêter le timer une fois toutes les positions atteintes
+                    apprenti.permutation();
                     timer.cancel();
                 }
             }
@@ -128,6 +126,16 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         timer.scheduleAtFixedRate(timerTask, 0, 100);
     }
 
+    public void dessinerChemin(LinkedList<Position> positionsCibles) {
+        Platform.runLater(() -> {
+            graphicsContext2D.setFill(COULEUR_CHEMIN);
+            for (Position position : positionsCibles) {
+                double posX = (position.getAbscisse() + 1) * CARRE;
+                double posY = (position.getOrdonnee() + 1) * CARRE;
+                graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
+            }
+        });
+    }
 
 
 
@@ -156,7 +164,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             numLigne++;
         }
     }
-
     public void afficherJoueur(Player player) {
         Position position = player.getPosPlayer();
         double posX = (position.getAbscisse()+1) * CARRE;

@@ -7,13 +7,13 @@ import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;
 class PlayerTest {
     @Test
-    void Player(){
-        int numcristal=0;
-        int NbPas=0;
+    void Player() {
+        int numcristal = 0;
+        int NbPas = 0;
         Player joueurTest = new Player();
-        boolean equals = joueurTest.getPosPlayer().equals(new Position(15,15));
-        boolean equals2 = joueurTest.getCristalCol()==numcristal;
-        boolean equals3 = joueurTest.getPosPlayer().getNombreDePas()==NbPas;
+        boolean equals = joueurTest.getPosPlayer().equals(new Position(15, 15));
+        boolean equals2 = joueurTest.getCristalCol() == numcristal;
+        boolean equals3 = joueurTest.getPosPlayer().getNombreDePas() == NbPas;
         assertTrue(equals);
         assertTrue(equals2);
         assertTrue(equals3);

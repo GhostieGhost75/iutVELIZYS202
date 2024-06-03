@@ -8,14 +8,17 @@ import javafx.scene.layout.VBox;
 public class VueModeAlgoTriselection extends VBox {
     Controleur controleur;
     Label labelTriselect;
+    public Label labelNbdepasattendus;
     Button boutonAlgo;
     VueModeAlgoTriselection(){
         controleur = new Controleur();
         labelTriselect =new Label("Mode_tri_selection");
         boutonAlgo = new Button("Lancement_Algo");
-        boutonAlgo.setOnAction(event -> controleur.handleButtonCTri(event));
+        labelNbdepasattendus = new Label("Nombre de pas attendus :");
+        boutonAlgo.setOnAction(event -> controleur.handleButtonClickTriSelection(event));
         this.getChildren().add(labelTriselect);
         this.getChildren().add(boutonAlgo);
+        this.getChildren().add(labelNbdepasattendus);
         }
     }
 

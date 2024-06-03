@@ -42,7 +42,7 @@ public class AlgoTest {
         };
         for (Position pos:posVouluesTab)
             posVoulues.add(pos);
-        LinkedList<Position> resultatHeuristique = Algorithmes.Heuristique(joueur);
+        LinkedList<Position> resultatHeuristique = Algorithmes.heuristique(joueur);
         while (resultatHeuristique.size() != 0)
             assert(resultatHeuristique.poll().equals(posVoulues.poll()));
     }
@@ -56,7 +56,7 @@ public class AlgoTest {
         Player joueur2 = new Player();
         joueur2.setTemples(templesTest2);
         LinkedList<Position> resultatSelect = Algorithmes.TriSelect(joueur1);
-        LinkedList<Position> resultatHeuristique = Algorithmes.Heuristique(joueur2);
+        LinkedList<Position> resultatHeuristique = Algorithmes.heuristique(joueur2);
         assert(Algorithmes.longueurParcoursAlgo(resultatSelect) == 98);
         assert(Algorithmes.longueurParcoursAlgo(resultatHeuristique) == 44);
 
