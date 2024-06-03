@@ -19,24 +19,15 @@ public class LectureScenario {
         try {
             Scanner scanner = new Scanner (fichierScenario);
             Temple temple;
-            boolean formatNegatif = false;
             while(scanner.hasNext()){
                 int posX = scanner.nextInt();
                 int posY = scanner.nextInt();
-                if (posX<0 || posY<0)
-                    formatNegatif = true;
                 int couleur = scanner.nextInt();
                 int cristal = scanner.nextInt();
-                temple = new Temple(new Position(posX, posY),couleur,cristal);
+                temple = new Temple(new Position(posX+15, posY+15),couleur,cristal);
                 templesDuScenario.put(temple.getPos(),temple);
             }
             scanner.close();
-            if (formatNegatif) {
-                Set<Position> positions = templesDuScenario.keySet();
-                for (Position pos : positions) {
-                    templesDuScenario.get(pos).negFormat();
-                }
-            }
         }
         catch (FileNotFoundException e){
             System.out.println(e.getMessage());

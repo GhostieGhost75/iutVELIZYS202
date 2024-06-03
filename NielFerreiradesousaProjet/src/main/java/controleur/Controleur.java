@@ -4,15 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.StackPane;
-import modele.LectureScenario;
-import modele.Player;
-import modele.Position;
-import modele.Temple;
+import modele.*;
 import vue.StackpaneMode;
 import vue.VBoxRoot;
 import vue.VboxCanva;
-import vue.VueModemanuel;
 
 import java.io.File;
 import java.util.TreeMap;
@@ -31,16 +26,15 @@ public class Controleur implements EventHandler {
             VboxCanva vboxCanva = VBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
             joueur.reset();
-            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getNombreDePas());
-            vboxCanva.cliquemouv(new Position(joueur.getAbscisse(), joueur.getOrdonnee()), joueur);
+            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getPosPlayer().getNombreDePas());
+            vboxCanva.cliquemouv(joueur);
             vboxCanva.effacerTout();
             vboxCanva.afficherJoueur(joueur);
             for (Position temple : temples.keySet()) {
                 System.out.println("Temple à la position : " + temples.get(temple).getPos());
                 vboxCanva.dessinerTemple(temples.get(temple));
             }
-
-
+            Algorithmes.Heuristique(joueur);
         }
     }
     public void handleMenuItemActionManuel(Event event){

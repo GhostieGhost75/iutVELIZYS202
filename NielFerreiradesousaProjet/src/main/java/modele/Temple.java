@@ -7,7 +7,7 @@ public class Temple {
     private int cristalCol;
     private final int templeNum;
 
-    public Temple(Position parPos, int parCris, int parNum) {
+    public Temple(Position parPos, int parNum, int parCris) {
         templePos = parPos;
         cristalCol = parCris;
         templeNum = parNum;
@@ -28,8 +28,6 @@ public class Temple {
     public Position getPos() {
         return templePos;
     }
-
-    public void negFormat() {templePos = new Position(templePos.getAbscisse() + 15, templePos.getOrdonnee() + 15);}
 
     public String toString() {return templePos.toString() + "\n couleur : "+ templeNum + " cristal : " + cristalCol;}
 }
