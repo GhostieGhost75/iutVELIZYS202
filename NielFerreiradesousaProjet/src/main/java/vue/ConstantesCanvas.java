@@ -14,5 +14,5 @@ public interface ConstantesCanvas {
     Paint[] COULEUR_TEMPLES ={Paint.valueOf("white"),Paint.valueOf("green"),Paint.valueOf("brown"),Paint.valueOf("GOLD"),Paint.valueOf("LIGHTSTEELBLUE"),Paint.valueOf("yellow"),Paint.valueOf("gray"),Paint.valueOf("orange"),Paint.valueOf("pink"),Paint.valueOf("cyan")};
     Paint COULEUR_JOUEUR = Paint.valueOf("red");
     Paint COULEUR_CANVAS = Paint.valueOf("black");
-    Paint COULEUR_CHEMIN = Paint.valueOf("beige");
+    Paint COULEUR_CHEMIN = Paint.valueOf("#00C8AD7F");
 }

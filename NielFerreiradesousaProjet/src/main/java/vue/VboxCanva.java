@@ -5,6 +5,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import modele.Player;
 import modele.Position;
 import modele.Temple;
@@ -76,7 +78,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         });
 
     }
-    public void deplacementAvecTimerListe(Position positionCourante, LinkedList<Position> positionsCibles) {
+    public void deplacementAvecTimerListe( LinkedList<Position> positionsCibles) {
         int[] indice = {0};
         Timer timer = new Timer();
         Player apprenti = HBoxRoot.getApprenti();
@@ -84,19 +86,20 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+
                 if (indice[0] < positionsCibles.size()) {
                     Position positionCible = positionsCibles.get(indice[0]);
 
-                    if (!positionCourante.equals(positionCible)) {
+                    if (!apprenti.getPosPlayer().equals(positionCible)) {
                         // Calculer les pas pour se rapprocher de la position cible uniquement horizontalement ou verticalement
                         int stepX = 0;
                         int stepY = 0;
-                        if (positionCourante.getAbscisse() != positionCible.getAbscisse()) {
-                            stepX = Integer.compare(positionCible.getAbscisse(), positionCourante.getAbscisse());
-                        } else if (positionCourante.getOrdonnee() != positionCible.getOrdonnee()) {
-                            stepY = Integer.compare(positionCible.getOrdonnee(), positionCourante.getOrdonnee());
+                        if (apprenti.getPosPlayer().getAbscisse() != positionCible.getAbscisse()) {
+                            stepX = Integer.compare(positionCible.getAbscisse(), apprenti.getPosPlayer().getAbscisse());
+                        } else if (apprenti.getPosPlayer().getOrdonnee() != positionCible.getOrdonnee()) {
+                            stepY = Integer.compare(positionCible.getOrdonnee(), apprenti.getPosPlayer().getOrdonnee());
                         }
-                        apprenti.getPosPlayer().deplacementUneCase(new Position(positionCourante.getAbscisse() + stepX,positionCourante.getOrdonnee() + stepY));
+                        apprenti.getPosPlayer().deplacementUneCase(new Position(apprenti.getPosPlayer().getAbscisse() + stepX,apprenti.getPosPlayer().getOrdonnee() + stepY));
 
                         // Effacer l'ancienne position et redessiner les éléments
                         Platform.runLater(() -> {
@@ -123,20 +126,54 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             }
         };
 
+        timer.scheduleAtFixedRate(timerTask, 15000, 100);
+    }
+
+    public void deplacementAvecTimerListeChemin( LinkedList<Position> positionsCibles) {
+        int[] indice = {0};
+        Timer timer = new Timer();
+        Player apprenti = new Player();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (indice[0] < positionsCibles.size()) {
+                    Position positionCible = positionsCibles.get(indice[0]);
+
+                    if (!apprenti.getPosPlayer().equals(positionCible)) {
+                        // Calculer les pas pour se rapprocher de la position cible uniquement horizontalement ou verticalement
+                        int stepX = 0;
+                        int stepY = 0;
+                        if (apprenti.getPosPlayer().getAbscisse() != positionCible.getAbscisse()) {
+                            stepX = Integer.compare(positionCible.getAbscisse(), apprenti.getPosPlayer().getAbscisse());
+                        } else if (apprenti.getPosPlayer().getOrdonnee() != positionCible.getOrdonnee()) {
+                            stepY = Integer.compare(positionCible.getOrdonnee(), apprenti.getPosPlayer().getOrdonnee());
+                        }
+                        apprenti.getPosPlayer().deplacementUneCase(new Position(apprenti.getPosPlayer().getAbscisse() + stepX,apprenti.getPosPlayer().getOrdonnee() + stepY));
+
+                        // Effacer l'ancienne position et redessiner les éléments
+                        Platform.runLater(() -> {
+                            for (Temple temple : apprenti.getTemples().values()) {
+                                dessinerTemple(temple);
+                            }
+                            graphicsContext2D.setFill(COULEUR_CHEMIN);
+                            graphicsContext2D.fillRect((apprenti.getPosPlayer().getAbscisse()+1)*CARRE,(apprenti.getPosPlayer().getOrdonnee()+1)*CARRE,CARRE,CARRE);
+                            labelNombreDePas.setText("Nombre de pas : " + apprenti.getPosPlayer().getNombreDePas());
+                        });
+                    } else {
+                        // Si la position cible est atteinte, passer à la prochaine position
+                        indice[0]++;
+                        if (indice[0] < positionsCibles.size()) {
+                        }
+                    }
+                } else {
+                    // Arrêter le timer une fois toutes les positions atteintes
+                    timer.cancel();
+                }
+            }
+        };
+
         timer.scheduleAtFixedRate(timerTask, 0, 100);
     }
-
-    public void dessinerChemin(LinkedList<Position> positionsCibles) {
-        Platform.runLater(() -> {
-            graphicsContext2D.setFill(COULEUR_CHEMIN);
-            for (Position position : positionsCibles) {
-                double posX = (position.getAbscisse() + 1) * CARRE;
-                double posY = (position.getOrdonnee() + 1) * CARRE;
-                graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
-            }
-        });
-    }
-
 
 
 
@@ -170,7 +207,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         double posY = (position.getOrdonnee()+1)* CARRE;
         graphicsContext2D.setFill(COULEUR_JOUEUR);
         graphicsContext2D.fillOval(posX, posY, CARRE, CARRE);
-        System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
         afficher_cristal_apprenti(player);
     }
     public void afficher_cristal_apprenti(Player player){
@@ -194,7 +230,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         Position position = temple.getPos();
         double posX = (position.getAbscisse() + 1) * CARRE;
         double posY = (position.getOrdonnee() + 1) * CARRE;
-        System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
         graphicsContext2D.setFill(COULEUR_TEMPLES[temple.getNum()]);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
         afficher_cristal_temple(temple);
