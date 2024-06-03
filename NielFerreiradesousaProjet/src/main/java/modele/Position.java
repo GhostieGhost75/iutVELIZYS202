@@ -37,10 +37,6 @@ public class Position implements Comparable<Position>{
 
     public static int getNombreDePas() {return nombreDePas;}
 
-    public static void setNombreDePas(int nombreDePas) {
-        Position.nombreDePas = nombreDePas;
-    }
-
     @Override
     public int compareTo(Position parPosition) {
         if (this.abscisse == parPosition.abscisse) {

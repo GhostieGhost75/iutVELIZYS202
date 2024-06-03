@@ -53,11 +53,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                     Platform.runLater(() -> {
                         player.deplacementUneCase(positionCliquee);
 
-                        effacerTout();
-                        for (Position temple : player.getTemples().keySet()) {
-                            System.out.println("Temple à la position : " + player.getTemples().get(temple).getPos());
-                            dessinerTemple(player.getTemples().get(temple));
-                        }
+                        // Effacer l'ancienne position du joueur
+                        effacerPosition(positionApprenti);
 
                         // Mettre à jour l'interface graphique pour la nouvelle position
                         afficherJoueur(player);
@@ -68,8 +65,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         // Mettre à jour la position de l'apprenti
                         positionApprenti.setAbscisse(player.getAbscisse());
                         positionApprenti.setOrdonnee(player.getOrdonnee());
-
-
 
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
                         if (!positionApprenti.equals(positionCliquee)) {
@@ -83,9 +78,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             };
             timer.schedule(task, 0, 100); // Démarrage initial immédiat, puis répétition toutes les secondes
         });
-
     }
-
 
 
 
@@ -99,18 +92,18 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         }
 
         // Dessiner les indices de colonnes
-        int numCol = -15;
+        int numCol = 0;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for (double i = CARRE; i < LARGEUR_CANVAS; i += CARRE) {
-            graphicsContext2D.fillText(Integer.toString(numCol), i + CARRE / 7, CARRE / 2);
+            graphicsContext2D.fillText(Integer.toString(numCol), i + CARRE / 3, CARRE / 2);
             numCol++;
         }
 
         // Dessiner les indices de lignes
-        int numLigne = -15;
+        int numLigne = 0;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for (double i = CARRE; i < HAUTEUR_CANVAS; i += CARRE) {
-            graphicsContext2D.fillText(Integer.toString(numLigne), CARRE / 7, i + CARRE / 2);
+            graphicsContext2D.fillText(Integer.toString(numLigne), CARRE / 3, i + CARRE / 2);
             numLigne++;
         }
     }
@@ -122,23 +115,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         graphicsContext2D.setFill(COULEUR_JOUEUR);
         graphicsContext2D.fillOval(posX, posY, CARRE, CARRE);
         System.out.println("Dessiner joueur à : (" + posX + ", " + posY + ")");
-        afficher_cristal_apprenti(player);
-    }
-    public void afficher_cristal_apprenti(Player player){
-        Position pos= new Position(player.getAbscisse(), player.getOrdonnee());
-        double posX = (pos.getAbscisse()+1) * CARRE;
-        double posY = (pos.getOrdonnee()+1)* CARRE;
-        graphicsContext2D.setFill(COULEUR_TEMPLES[player.getCristalCol()]);
-        graphicsContext2D.fillOval(posX, posY,CARRE/1.2 ,CARRE/1.2 );
-
-    }
-    public void afficher_cristal_temple(Temple temple){
-        Position pos= new Position (temple.getPos().getAbscisse(),temple.getPos().getOrdonnee());
-        double posX = (pos.getAbscisse()+1) * CARRE;
-        double posY = (pos.getOrdonnee()+1)* CARRE;
-        graphicsContext2D.setFill(COULEUR_TEMPLES[temple.getCristal()]);
-        graphicsContext2D.fillOval(posX, posY,CARRE/1.2 ,CARRE/1.2 );
-
     }
 
     public void dessinerTemple(Temple temple) {
@@ -146,9 +122,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         double posX = (position.getAbscisse() + 1) * CARRE;
         double posY = (position.getOrdonnee() + 1) * CARRE;
         System.out.println("Dessiner temple à : (" + posX + ", " + posY + ")");
-        graphicsContext2D.setFill(COULEUR_TEMPLES[temple.getNum()]);
+        graphicsContext2D.setFill(COULEUR_CANVAS);
         graphicsContext2D.fillRect(posX, posY, CARRE, CARRE);
-        afficher_cristal_temple(temple);
     }
 
     public void effacerTout() {
