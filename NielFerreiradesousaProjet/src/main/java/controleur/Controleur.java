@@ -84,7 +84,7 @@ public class Controleur implements EventHandler {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();
         LinkedList<Position> parcours  = Algorithmes.heuristique(joueur);
-         vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcours);
+        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcours);
         }
 
 
