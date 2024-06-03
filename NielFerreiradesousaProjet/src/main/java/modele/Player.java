@@ -37,15 +37,9 @@ public class Player {
             ;}
     }
     public void reset(){
-<<<<<<< HEAD
-        this.abscisse=15;
-        this.ordonnee=15;
-        setNombreDePas(0);
         this.cristalCol=0;
-=======
         posPlayer = new Position(15,15);
         posPlayer.setNombreDePas(0);
->>>>>>> main
     }
 
     public int getCristalCol() {
