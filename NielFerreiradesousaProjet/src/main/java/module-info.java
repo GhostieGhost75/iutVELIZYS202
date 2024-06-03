@@ -9,4 +9,5 @@ module com.example.nielferreiradesousaprojet {
     exports com.example.nielferreiradesousaprojet;
     exports vue;
     exports modele;
+    exports controleur;
 }

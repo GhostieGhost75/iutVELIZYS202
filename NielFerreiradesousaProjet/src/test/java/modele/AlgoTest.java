@@ -6,8 +6,6 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /** Classe de test des fonctions liées au Algorithmes */
 public class AlgoTest {
 
@@ -17,7 +15,7 @@ public class AlgoTest {
      * suivant les principes du tri par sélection.
      */
     @Test
-    void TriSelect() {
+    public void TriSelect() {
         Player joueur = new Player();
         TreeMap<Position, Temple> templesTest = LectureScenario.lecture(new File("maps/scenario0.txt"));
         joueur.setTemples(templesTest);
@@ -42,7 +40,7 @@ public class AlgoTest {
      * suivant les principes de l'algorithme.
      */
     @Test
-    void Heuristique() {
+    public void Heuristique() {
         Player joueur = new Player();
         TreeMap<Position, Temple> templesTest = LectureScenario.lecture(new File("maps/scenario1.txt"));
         joueur.setTemples(templesTest);
@@ -65,7 +63,7 @@ public class AlgoTest {
      * en employant les deux algorithmes.
      */
     @Test
-    void longueurParcoursAlgo() {
+    public void longueurParcoursAlgo() {
         TreeMap<Position, Temple> templesTest1 = LectureScenario.lecture(new File("maps/scenario1.txt"));
         TreeMap<Position, Temple> templesTest2 = LectureScenario.lecture(new File("maps/scenario1.txt"));
         Player joueur1 = new Player();
@@ -76,7 +74,6 @@ public class AlgoTest {
         LinkedList<Position> resultatHeuristique = Algorithmes.heuristique(joueur2);
         assert(Algorithmes.longueurParcoursAlgo(resultatSelect) == 84);
         assert(Algorithmes.longueurParcoursAlgo(resultatHeuristique) == 44);
-
     }
 
 }

@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Classe de test des fonctions liées aux temples (classe Temple) */
-class TempleTest {
+public class TempleTest {
 
     /**
      * Crée un objet Temple.
      * Pas d'erreur si l'objet correspond aux attentes.
      */
     @Test
-    void Temple() {
+    public void Temple() {
         int numTemple=2;
         int numCristal=5;
         Position positionTemple = new Position(5,5);
@@ -23,9 +23,6 @@ class TempleTest {
         assertTrue(test1);
         assertTrue(test2);
         assertTrue(test3);
-        System.out.println(templeTest.getPos());
-        System.out.println(templeTest.getCristal());
-        System.out.println(templeTest.getNum());
     }
 
 }

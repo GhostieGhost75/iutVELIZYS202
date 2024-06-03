@@ -7,14 +7,14 @@ import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Classe de test des fonctions liées au joueur (classe Player) */
-class PlayerTest {
+public class PlayerTest {
 
     /**
      * Crée un objet Player.
      * Pas d'erreur si l'objet correspond aux attentes.
      */
     @Test
-    void Player() {
+    public void Player() {
         int numcristal = 0;
         int NbPas = 0;
         Player joueurTest = new Player();
@@ -31,7 +31,7 @@ class PlayerTest {
      * Pas d'erreur si la permutation est réussie.
      */
     @Test
-    void permutation() {
+    public void permutation() {
     Temple templeTest = new Temple(new Position(1,1),2,3);
     TreeMap<Position, Temple>templeTestTreeMap = new TreeMap<Position, Temple>();
     templeTestTreeMap.put(templeTest.getPos(),templeTest);
@@ -45,8 +45,6 @@ class PlayerTest {
     boolean permuP = joueurTest.getCristalCol()==cristalTemple;
     assertTrue(permuT);
     assertTrue(permuP);
-        System.out.println(templeTest.getCristal());
-        System.out.println(joueurTest.getCristalCol());
     }
 
     /**
@@ -54,7 +52,7 @@ class PlayerTest {
      * Pas d'erreur si chaque distance est correcte.
      */
     @Test
-    void distancePos() {
+    public void distancePos() {
         Position pos1 = new Position(5,5);
         Position pos2 = new Position(4,4);
         Position pos3 = new Position(7,7);
