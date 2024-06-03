@@ -9,7 +9,7 @@ public class Player extends Position {
     private TreeMap<Position, Temple> templeMap;
 
     public Player() {
-        super(12,12);
+        super(15,15);
         cristalCol = 0;
         templeMap = new TreeMap<Position, Temple>();
 
@@ -28,11 +28,18 @@ public class Player extends Position {
     }
 
     public void permutation() {
-        int templeCris = templeMap.get(new Position(abscisse, ordonnee)).getCristal();
-        templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
-        cristalCol = templeCris;
+        Position positionjoueur = new Position(abscisse,ordonnee);
+        if (this.getTemples().containsKey(positionjoueur)){
+            int templeCris = templeMap.get(positionjoueur).getCristal();
+            templeMap.get(new Position(abscisse, ordonnee)).setCristal(cristalCol);
+            cristalCol = templeCris;
+            ;}
     }
-
+    public void reset(){
+        this.abscisse=15;
+        this.ordonnee=15;
+        setNombreDePas(0);
+    }
 
     public int getCristalCol() {
         return cristalCol;

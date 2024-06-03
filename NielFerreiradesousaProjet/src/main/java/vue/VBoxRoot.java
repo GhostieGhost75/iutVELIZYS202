@@ -17,9 +17,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class VBoxRoot extends VBox implements ConstantesCanvas {
+
     private static Player apprenti;
     private static Controleur controleur;
     private static VboxCanva vueCanvas;
+
+    private static StackpaneMode stackpaneMode;
     public GraphicsContext graphicsContext2D;
 
     public VBoxRoot() {
@@ -46,6 +49,19 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
 
         vueCanvas = new VboxCanva();
         this.getChildren().add(vueCanvas);
+        MenuBar modeBar = new MenuBar();
+        this.getChildren().add(modeBar);
+        VBox.setMargin(modeBar, new Insets(9));
+        Menu menuMode = new Menu("Mode_apprenti");
+        modeBar.getMenus().add(menuMode);
+        MenuItem menuItemModeManuel = new MenuItem("modeManuel");
+        menuMode.getItems().add(menuItemModeManuel);
+        menuItemModeManuel.setOnAction(event -> controleur.handleMenuItemActionManuel(event));
+        MenuItem menuItemModeHeuristique = new MenuItem("modeHeuristique");
+        menuMode.getItems().add(menuItemModeHeuristique);
+        menuItemModeHeuristique.setOnAction(event -> controleur.handleMenuItemActionHeuristique(event));
+        stackpaneMode =new StackpaneMode();
+        this.getChildren().add(stackpaneMode);
     }
 
 
@@ -56,4 +72,6 @@ public class VBoxRoot extends VBox implements ConstantesCanvas {
     public static VboxCanva getVboxCanva() {
         return vueCanvas;
     }
+    public static StackpaneMode getStackpaneMode(){return stackpaneMode;}
+
 }
