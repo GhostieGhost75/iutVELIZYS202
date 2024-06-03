@@ -32,7 +32,7 @@ public class Algorithmes {
         return parcours;
     }
 
-    public static LinkedList<Position> Heuristique(Player parPlayer) {
+    public static LinkedList<Position> heuristique(Player parPlayer) {
         TreeMap<Position, Temple> templeMap = parPlayer.getTemples();
         TreeMap<Integer, Temple> temples = new TreeMap<>();
         LinkedList<Position> parcours = new LinkedList<>();

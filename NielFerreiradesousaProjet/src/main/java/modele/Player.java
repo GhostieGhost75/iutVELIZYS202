@@ -23,11 +23,6 @@ public class Player {
         templeMap = new TreeMap<Position, Temple>();
     }
 
-    public Position deplacement(Position posVoulue)  {
-        while (!this.equals(posVoulue))
-            posPlayer.deplacementUneCase(posVoulue);
-        return new Position(posPlayer.abscisse, posPlayer.ordonnee);
-    }
 
     public void permutation() {
         if (this.getTemples().containsKey(posPlayer)){
@@ -41,6 +36,7 @@ public class Player {
         posPlayer = new Position(15,15);
         posPlayer.setNombreDePas(0);
     }
+
 
     public int getCristalCol() {
         return cristalCol;

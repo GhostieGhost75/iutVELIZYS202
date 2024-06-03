@@ -1,18 +1,15 @@
 package vue;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import modele.Player;
 import modele.Position;
 import modele.Temple;
-import vue.ConstantesCanvas;
+
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
@@ -65,9 +62,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         // Mettre à jour le nombre de pas
                         labelNombreDePas.setText("Nombre de pas : " + player.getPosPlayer().getNombreDePas());
 
-                        // Mettre à jour la position de l'apprenti
-
-
 
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
                         if (!player.getPosPlayer().equals(positionCliquee)) {
@@ -82,6 +76,56 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             timer.schedule(task, 0, 100); // Démarrage initial immédiat, puis répétition toutes les secondes
         });
 
+    }
+    public void deplacementAvecTimerListe(Position positionCourante, LinkedList<Position> positionsCibles) {
+        int[] indice = {0};
+        Timer timer = new Timer();
+        Player apprenti = HBoxRoot.getApprenti();
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (indice[0] < positionsCibles.size()) {
+                    Position positionCible = positionsCibles.get(indice[0]);
+
+                    if (!positionCourante.equals(positionCible)) {
+                        // Calculer les pas pour se rapprocher de la position cible uniquement horizontalement ou verticalement
+                        int stepX = 0;
+                        int stepY = 0;
+
+                        if (positionCourante.getAbscisse() != positionCible.getAbscisse()) {
+                            stepX = Integer.compare(positionCible.getAbscisse(), positionCourante.getAbscisse());
+                        } else if (positionCourante.getOrdonnee() != positionCible.getOrdonnee()) {
+                            stepY = Integer.compare(positionCible.getOrdonnee(), positionCourante.getOrdonnee());
+                        }
+                        apprenti.getPosPlayer().deplacementUneCase(new Position(positionCourante.getAbscisse() + stepX,positionCourante.getOrdonnee() + stepY));
+                        // Incrémenter le nombre de pas
+
+                        // Effacer l'ancienne position et redessiner les éléments
+                        Platform.runLater(() -> {
+                            effacerTout(); // Effacer toute la carte pour mettre à jour correctement
+
+                            for (Temple temple : apprenti.getTemples().values()) {
+                                dessinerTemple(temple);
+                            }
+                            afficherJoueur(apprenti);
+                            labelNombreDePas.setText("Nombre de pas : " + apprenti.getPosPlayer().getNombreDePas());
+                        });
+                    } else {
+                        // Si la position cible est atteinte, passer à la prochaine position
+                        indice[0]++;
+                        if (indice[0] < positionsCibles.size()) {
+                            apprenti.permutation();
+                        }
+                    }
+                } else {
+                    // Arrêter le timer une fois toutes les positions atteintes
+                    timer.cancel();
+                }
+            }
+        };
+
+        timer.scheduleAtFixedRate(timerTask, 0, 100);
     }
 
 
