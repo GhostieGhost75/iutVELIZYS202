@@ -27,6 +27,7 @@ public class Algorithmes {
 
             }
         }
+        System.out.println(longueurParcoursAlgo(parcours));
         System.out.println(parcours);
         return parcours;
     }
@@ -54,7 +55,18 @@ public class Algorithmes {
                     temples.remove(next.getNum());
             }
         }
+        System.out.println(longueurParcoursAlgo(parcours));
         System.out.println(parcours);
         return parcours;
+    }
+
+    public static int longueurParcoursAlgo(LinkedList<Position> parParcours) {
+        int longueur = 0;
+        Position previous = new Position (15,15);
+        for (Position pos : parParcours) {
+            longueur += previous.distancePos(pos);
+            previous = pos;
+        }
+        return longueur;
     }
 }

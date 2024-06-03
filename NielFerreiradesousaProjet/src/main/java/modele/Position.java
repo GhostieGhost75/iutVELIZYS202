@@ -56,4 +56,8 @@ public class Position implements Comparable<Position>{
     public void setOrdonnee(int parordonnee) {
         this.ordonnee = parordonnee;
     }
+
+    public int distancePos(Position parPos) {
+        return Math.abs(this.ordonnee - parPos.ordonnee) + Math.abs(this.abscisse - parPos.abscisse);
+    }
 }

@@ -34,8 +34,7 @@ public class Controleur implements EventHandler {
                 System.out.println("Temple à la position : " + temples.get(temple).getPos());
                 vboxCanva.dessinerTemple(temples.get(temple));
             }
-
-
+            Algorithmes.Heuristique(joueur);
         }
     }
     public void handleMenuItemActionManuel(Event event){
