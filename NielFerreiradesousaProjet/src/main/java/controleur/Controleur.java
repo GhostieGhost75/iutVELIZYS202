@@ -40,11 +40,12 @@ public class Controleur implements EventHandler {
     public void handleMenuItemActionManuel(Event event){
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModemanuel())){
-            stackpaneMode.getChildren().get(0).toFront();}
+            stackpaneMode.getChildren().get(0).toFront();
+            }
         if (stackpaneMode.getChildren().get(1).equals(stackpaneMode.getVueModemanuel())){
             stackpaneMode.getChildren().get(1).toFront();
         }
-        System.out.println(stackpaneMode.getChildren());
+
 
 
     }
@@ -56,7 +57,7 @@ public class Controleur implements EventHandler {
         if (stackpaneMode.getChildren().get(1).equals(stackpaneMode.getvuemodeHeuristique())){
             stackpaneMode.getChildren().get(1).toFront();
         }
-        System.out.println(stackpaneMode.getChildren());
+
 
     }
     public void handleMenuItemActionTriselect(ActionEvent event) {
@@ -67,7 +68,7 @@ public class Controleur implements EventHandler {
         if (stackpaneMode.getChildren().get(1).equals(stackpaneMode.getVueModeAlgoTriselection())){
             stackpaneMode.getChildren().get(1).toFront();
         }
-        System.out.println(stackpaneMode.getChildren());
+
 
     }
 
@@ -79,21 +80,21 @@ public class Controleur implements EventHandler {
 
     }
 
-    public void handleButtonC(ActionEvent event) {
-        Algorithmes algo = new Algorithmes();
+    public void handleButtonClickHeuristique(ActionEvent event) {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();
-        LinkedList<Position> parcours  = Algorithmes.heuristique(joueur);
-        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcours);
+        LinkedList<Position> parcour  = Algorithmes.heuristique(joueur);
+        HBoxRoot.getStackpaneMode().getvuemodeHeuristique().labelNbdepasattendus.setText( "Nombre de pas attendus : "+Algorithmes.longueurParcoursAlgo(parcour));
+        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcour);
         }
 
 
-    public void handleButtonCTri(ActionEvent event) {
-        Algorithmes algo = new Algorithmes();
+    public void handleButtonClickTriSelection(ActionEvent event) {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();
-        LinkedList<Position> parcours  = Algorithmes.TriSelect(joueur);
-        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcours);
+        LinkedList<Position> parcour  = Algorithmes.TriSelect(joueur);
+        HBoxRoot.getStackpaneMode().getVueModeAlgoTriselection().labelNbdepasattendus.setText( "Nombre de pas attendus : "+Algorithmes.longueurParcoursAlgo(parcour));
+        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcour);
     }
 
 
