@@ -36,15 +36,21 @@ public class Algorithmes {
         TreeMap<Position, Temple> templeMap = parPlayer.getTemples();
         TreeMap<Integer, Temple> temples = new TreeMap<>();
         LinkedList<Position> parcours = new LinkedList<>();
+        Position posPlayer = new Position (15,15);
         for (Position pos : templeMap.keySet()) {
             if (templeMap.get(pos).getNum() != templeMap.get(pos).getCristal())
                 temples.put(templeMap.get(pos).getNum(), templeMap.get(pos));
         }
         while (!temples.isEmpty()) {
-            Temple first = temples.get(temples.firstKey());
+            int plusProche = temples.firstKey();
+            for (int i : temples.keySet()) {
+                if (posPlayer.distancePos(temples.get(i).getPos()) < posPlayer.distancePos(temples.get(plusProche).getPos()))
+                    plusProche = i;
+            }
+            Temple first = temples.get(plusProche);
             parcours.add(first.getPos());
             Temple next = temples.get(first.getCristal());
-            Temple previous;
+            Temple previous = null;
             while (temples.get(next.getCristal()) != null) {
                 System.out.println(next);
                 System.out.println(temples);
@@ -54,6 +60,7 @@ public class Algorithmes {
                 if (previous.getCristal() == next.getNum())
                     temples.remove(next.getNum());
             }
+            posPlayer = previous.getPos();
         }
         System.out.println(longueurParcoursAlgo(parcours));
         System.out.println(parcours);
