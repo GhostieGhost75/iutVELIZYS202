@@ -17,13 +17,7 @@ class PlayerTest {
         assertTrue(equals);
         assertTrue(equals2);
         assertTrue(equals3);
-<<<<<<< HEAD
     }
-=======
-
-    }
-
->>>>>>> 65cc902832b084c1e052c07deb574936e80e8561
 
     @Test
     void permutation() {
