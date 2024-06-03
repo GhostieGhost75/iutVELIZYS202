@@ -99,18 +99,18 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         }
 
         // Dessiner les indices de colonnes
-        int numCol = 0;
+        int numCol = -15;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for (double i = CARRE; i < LARGEUR_CANVAS; i += CARRE) {
-            graphicsContext2D.fillText(Integer.toString(numCol), i + CARRE / 3, CARRE / 2);
+            graphicsContext2D.fillText(Integer.toString(numCol), i + CARRE / 7, CARRE / 2);
             numCol++;
         }
 
         // Dessiner les indices de lignes
-        int numLigne = 0;
+        int numLigne = -15;
         graphicsContext2D.setFill(COULEUR_CANVAS);
         for (double i = CARRE; i < HAUTEUR_CANVAS; i += CARRE) {
-            graphicsContext2D.fillText(Integer.toString(numLigne), CARRE / 3, i + CARRE / 2);
+            graphicsContext2D.fillText(Integer.toString(numLigne), CARRE / 7, i + CARRE / 2);
             numLigne++;
         }
     }

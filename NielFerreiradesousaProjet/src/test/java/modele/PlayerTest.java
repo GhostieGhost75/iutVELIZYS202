@@ -26,7 +26,7 @@ class PlayerTest {
 
     @Test
     void deplacement() {
-        Position[] resultat = {new Position(17,15),new Position(15,17),new Position(12,15),new Position(15,12),new Position(17,17),new Position(12,12),new Position(17,12),new Position(12,17)}; // Les résultats attendus
+        Position[] resultat = {new Position(18,15),new Position(15,18),new Position(12,15),new Position(15,12),new Position(18,18),new Position(12,12),new Position(18,12),new Position(12,18)}; // Les résultats attendus
         Player joueurtest = new Player();
         for (Position position : resultat) {
             boolean b = (joueurtest.deplacement(position)).equals(joueurtest);
