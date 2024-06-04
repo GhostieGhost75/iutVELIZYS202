@@ -40,13 +40,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -71,7 +69,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.nielferreiradesousaprojet/com.example.nielferreiradesousaprojet.HelloApplication
+                                com.example.nielferreiradesousaprojet/com.example.nielferreiradesousaprojet.vue.ProjetApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
