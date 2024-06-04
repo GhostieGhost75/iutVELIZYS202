@@ -32,7 +32,5 @@ public interface ConstantesCanvas {
     Paint COULEUR_CANVAS = Paint.valueOf("black");
 
     /** objet Paint : couleur de la prévisualisation des chemins pour les algorithmes */
-    Paint COULEUR_CHEMIN = Paint.valueOf("beige");
-=======
->>>>>>> graphics
+    Paint COULEUR_CHEMIN = Paint.valueOf("#00C8AD7F");
 }
