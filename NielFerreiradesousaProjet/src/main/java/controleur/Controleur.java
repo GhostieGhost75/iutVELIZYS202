@@ -38,6 +38,7 @@ public class Controleur implements EventHandler {
 
     /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour le manuel */
     public void handleMenuItemActionManuel(Event event){
+        HBoxRoot.getApprenti().setMoving(false);
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModemanuel())){
             stackpaneMode.getChildren().get(0).toFront();
@@ -51,6 +52,7 @@ public class Controleur implements EventHandler {
     }
     /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour l'heuristique */
     public void handleMenuItemActionHeuristique(Event event){
+        HBoxRoot.getApprenti().setMoving(true);
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getvuemodeHeuristique())) {
             stackpaneMode.getChildren().get(0).toFront();
@@ -63,6 +65,7 @@ public class Controleur implements EventHandler {
     }
     /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour le tri selection */
     public void handleMenuItemActionTriselect(ActionEvent event) {
+        HBoxRoot.getApprenti().setMoving(true);
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModeAlgoTriselection())) {
             stackpaneMode.getChildren().get(0).toFront();
@@ -89,7 +92,9 @@ public class Controleur implements EventHandler {
         LinkedList<Position> parcour  = Algorithmes.heuristique(joueur);
         HBoxRoot.getStackpaneMode().getvuemodeHeuristique().labelNbdepasattendus.setText( "Nombre de pas attendus : "+Algorithmes.longueurParcoursAlgo(parcour));
         vboxCanva.deplacementAvecTimerListeChemin(parcour);
+        joueur.setMoving(true);
         vboxCanva.deplacementAvecTimerListe(parcour);
+        joueur.setMoving(false);
         }
 
     /**cette méthode s'occupe du bouton qui permet le lancement de l'algorithme qui utilise le Tri selection */

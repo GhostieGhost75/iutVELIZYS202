@@ -13,6 +13,8 @@ public class Player {
     /** objet TreeMap : map qui contient les temples associés a leur position pour le scénario choisit */
     private TreeMap<Position, Temple> templeMap;
 
+    private boolean moving;
+
     public Player() {
         posPlayer = new Position(15,15);
         cristalCol = 0;
@@ -24,6 +26,7 @@ public class Player {
         posPlayer = new Position(parAbs,parOrd);
         cristalCol = parCris;
         templeMap = new TreeMap<Position, Temple>();
+        moving = false;
     }
 
     /**
@@ -57,5 +60,9 @@ public class Player {
     }
 
     public Position getPosPlayer() {return posPlayer;}
+
+    public void setMoving(boolean parBool) {moving = parBool;}
+
+    public boolean getMoving() {return moving;}
 
 }

@@ -15,13 +15,17 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
-/** classe représentant la grille de jeux */
+
+/** Classe fille de VBox : affiche la grille de jeux et le nombre de pas */
 public class VboxCanva extends VBox implements ConstantesCanvas {
+
     /** objet Canvas : la grille,la map */
     public Canvas canvasCarte;
+
     /** objet Label : label pour le nombre de pas*/
     public Label labelNombreDePas;
-    /** objet GraphicsContext : permet le changement des couleur et le dessin de forme */
+
+    /** objet GraphicsContext : permet le changement des couleurs et le dessin de formes */
     public GraphicsContext graphicsContext2D;
 
     public VboxCanva() {
@@ -40,13 +44,16 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     /**
      * Permet le deplacement du joueur lors d'un clique
-     * @param player
+     * @param player objet Player : l'apprenti ordonnateur
      */
     public void cliquemouv(Player player) {
         canvasCarte.setOnMouseClicked(event -> {
+            if (player.getMoving())
+                return;
             double abscisse = (event.getX() / CARRE)-1;
             double ordonnee = (event.getY() / CARRE)-1;
             Position positionCliquee = new Position((int) abscisse, (int) ordonnee);
+
 
             // Stockez une référence au Timer dans une variable locale
             Timer timer = new Timer();
@@ -55,6 +62,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
+                        Position destination;
+                        player.setMoving(true);
                         player.getPosPlayer().deplacementUneCase(positionCliquee);
 
                         effacerTout();
@@ -71,11 +80,10 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
 
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
-                        if (!player.getPosPlayer().equals(positionCliquee)) {
+                        if (player.getPosPlayer().equals(positionCliquee)) {
                             // Répéter la tâche toutes les secondes
-                            timer.schedule(this, 100);
-                        } else {
                             timer.cancel();
+                            player.setMoving(false);
                         }
                     });
                 }
