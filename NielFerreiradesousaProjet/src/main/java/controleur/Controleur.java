@@ -85,7 +85,8 @@ public class Controleur implements EventHandler {
         Player joueur = HBoxRoot.getApprenti();
         LinkedList<Position> parcour  = Algorithmes.heuristique(joueur);
         HBoxRoot.getStackpaneMode().getvuemodeHeuristique().labelNbdepasattendus.setText( "Nombre de pas attendus : "+Algorithmes.longueurParcoursAlgo(parcour));
-        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcour);
+        vboxCanva.deplacementAvecTimerListeChemin(parcour);
+        vboxCanva.deplacementAvecTimerListe(parcour);
         }
 
 
@@ -94,7 +95,8 @@ public class Controleur implements EventHandler {
         Player joueur = HBoxRoot.getApprenti();
         LinkedList<Position> parcour  = Algorithmes.TriSelect(joueur);
         HBoxRoot.getStackpaneMode().getVueModeAlgoTriselection().labelNbdepasattendus.setText( "Nombre de pas attendus : "+Algorithmes.longueurParcoursAlgo(parcour));
-        vboxCanva.deplacementAvecTimerListe(joueur.getPosPlayer(),parcour);
+        vboxCanva.deplacementAvecTimerListeChemin(parcour);
+        vboxCanva.deplacementAvecTimerListe(parcour);
     }
 
 
