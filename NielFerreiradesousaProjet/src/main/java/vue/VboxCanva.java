@@ -65,6 +65,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         Position destination;
                         player.setMoving(true);
                         player.getPosPlayer().deplacementUneCase(positionCliquee);
+                        player.getPosPlayer().incrementerNombreDePas();
 
                         effacerTout();
                         for (Position temple : player.getTemples().keySet()) {
@@ -102,6 +103,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         Timer timer = new Timer();
         Player apprenti = HBoxRoot.getApprenti();
 
+
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -119,7 +121,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                             stepY = Integer.compare(positionCible.getOrdonnee(), apprenti.getPosPlayer().getOrdonnee());
                         }
                         apprenti.getPosPlayer().deplacementUneCase(new Position(apprenti.getPosPlayer().getAbscisse() + stepX,apprenti.getPosPlayer().getOrdonnee() + stepY));
-
+                        apprenti.getPosPlayer().incrementerNombreDePas();
                         // Effacer l'ancienne position et redessiner les éléments
                         Platform.runLater(() -> {
                             effacerTout(); // Effacer toute la carte pour mettre à jour correctement
