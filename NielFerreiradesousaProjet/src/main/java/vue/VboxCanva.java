@@ -1,5 +1,6 @@
 package vue;
 
+import controleur.Controleur;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -28,6 +29,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     /** objet GraphicsContext : permet le changement des couleurs et le dessin de formes */
     public GraphicsContext graphicsContext2D;
 
+    /** Constructeur de l'objet VboxCanva : affiche la grille de jeux, les temples et le joueur */
     public VboxCanva() {
         labelNombreDePas = new Label("Nombre de pas : 0");
         canvasCarte = new Canvas(LARGEUR_CANVAS, HAUTEUR_CANVAS);
@@ -95,8 +97,8 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
     /**
-     * permet le deplacement de l'algorithme
-     * @param positionsCibles
+     * permet le deplacement de l'apprenti en fonction l'algorithme
+     * @param positionsCibles objet List : la liste des positions à suivre
      */
     public void deplacementAvecTimerListe( LinkedList<Position> positionsCibles) {
         int[] indice = {0};
@@ -137,6 +139,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         indice[0]++;
                         if (indice[0] < positionsCibles.size()) {
                             apprenti.permutation();
+                            Controleur.checkwin();
                         }
                     }
                 } else {
@@ -144,15 +147,15 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                     apprenti.permutation();
                     timer.cancel();
                 }
+
             }
         };
-
-        timer.scheduleAtFixedRate(timerTask, 15000, 100);
+        timer.scheduleAtFixedRate(timerTask, 0, 100);
     }
 
     /**
      * affiche le chemin via un joueur invisible qui depose un carré bleu derrière lui
-     * @param positionsCibles
+     * @param positionsCibles objet List : la liste des positions à suivre
      */
     public void deplacementAvecTimerListeChemin( LinkedList<Position> positionsCibles) {
         int[] indice = {0};
@@ -196,13 +199,11 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             }
         };
 
-        timer.scheduleAtFixedRate(timerTask, 0, 100);
+        timer.scheduleAtFixedRate(timerTask, 0, 25);
     }
 
 
-    /**
-     * methode qui dessine la map
-     */
+    /** methode qui dessine la map */
     public void dessinerGrille() {
         graphicsContext2D.setStroke(COULEUR_CANVAS);
         for (int i = 0; i < LARGEUR_CANVAS; i += CARRE) {
@@ -228,10 +229,9 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         }
     }
 
-    /**
-     * affiche le joueur et son cristal
-     * @param player
-     */
+    /** affiche le joueur et son cristal
+     * @param player objet Player : l'apprenti ordonnateur
+     * */
     public void afficherJoueur(Player player) {
         Position position = player.getPosPlayer();
         double posX = (position.getAbscisse()+1) * CARRE;
@@ -243,7 +243,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     /**
      * affiche le cristal du joueur
-     * @param player
+     * @param player objet Player : l'apprenti ordonnateur
      */
     public void afficher_cristal_apprenti(Player player){
         Position pos= player.getPosPlayer();
@@ -256,7 +256,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     /**
      * affiche le cristal du temple
-     * @param temple
+     * @param temple objet Temple : le temple dont le cristal doit être affiché
      */
     public void afficher_cristal_temple(Temple temple){
         Position pos= new Position (temple.getPos().getAbscisse(),temple.getPos().getOrdonnee());
@@ -269,7 +269,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     /**
      * dessine un temple
-     * @param temple
+     * @param temple objet Temple : le temple à dessiner
      */
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
@@ -280,9 +280,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         afficher_cristal_temple(temple);
     }
 
-    /**
-     * efface toute la map et la redessine
-     */
+    /** efface toute la map et la redessine */
     public void effacerTout() {
         graphicsContext2D.clearRect(0, 0, LARGEUR_CANVAS, HAUTEUR_CANVAS);
         dessinerGrille();

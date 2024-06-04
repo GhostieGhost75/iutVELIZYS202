@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-
+/** Classe permettant la lecture des scénarios dans les fichiers */
 public class LectureScenario {
     /**
      * la méthode de lecure prend en paramètre un fichier contenant un scénario

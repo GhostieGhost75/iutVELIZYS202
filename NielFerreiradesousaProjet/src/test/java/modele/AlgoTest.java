@@ -29,7 +29,7 @@ public class AlgoTest {
         };
         for (Position pos:posVouluesTab)
             posVoulues.add(pos);
-        LinkedList<Position> resultatSelect = Algorithmes.TriSelect(joueur);
+        LinkedList<Position> resultatSelect = Algorithmes.triSelect(joueur);
         while (resultatSelect.size() != 0)
             assert(resultatSelect.poll().equals(posVoulues.poll()));
     }
@@ -70,7 +70,7 @@ public class AlgoTest {
         joueur1.setTemples(templesTest1);
         Player joueur2 = new Player();
         joueur2.setTemples(templesTest2);
-        LinkedList<Position> resultatSelect = Algorithmes.TriSelect(joueur1);
+        LinkedList<Position> resultatSelect = Algorithmes.triSelect(joueur1);
         LinkedList<Position> resultatHeuristique = Algorithmes.heuristique(joueur2);
         assert(Algorithmes.longueurParcoursAlgo(resultatSelect) == 84);
         assert(Algorithmes.longueurParcoursAlgo(resultatHeuristique) == 44);

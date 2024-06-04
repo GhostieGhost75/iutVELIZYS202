@@ -35,7 +35,7 @@ public class PlayerTest {
     Temple templeTest = new Temple(new Position(1,1),2,3);
     TreeMap<Position, Temple>templeTestTreeMap = new TreeMap<Position, Temple>();
     templeTestTreeMap.put(templeTest.getPos(),templeTest);
-    Player joueurTest = new Player(1,1,1,0);
+    Player joueurTest = new Player(1,1,1);
     joueurTest.setTemples(templeTestTreeMap);
     int cristalTemple = templeTest.getCristal();
     int cristalJoueur = joueurTest.getCristalCol();

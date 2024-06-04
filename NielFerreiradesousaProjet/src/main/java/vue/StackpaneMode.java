@@ -41,7 +41,7 @@ public class StackpaneMode extends StackPane {
      * Permet de récupérer la vue de l'algorithme Heuristique
      * @return objet VueModeAlgoHeuristique : la vue de l'algorithme Heuristique
      */
-    public VueModeAlgoHeuristique getvuemodeHeuristique() {return vueModeAlgoHeuristique;}
+    public VueModeAlgoHeuristique getVueModeAlgoHeuristique() {return vueModeAlgoHeuristique;}
 
     /**
      * Permet de récupérer la vue de l'algorithme TriSelect

@@ -3,15 +3,15 @@ package modele;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
-/**Classe ou chaque methode est un algotithme de tri  */
+/**Classe où chaque méthode est un algotithme de tri  */
 public class Algorithmes {
 
     /**
      * Applique un algorithme de tri selection sur la liste des temple de manière a savoir quel chemin le joueur va emprunté
-     * @param parPlayer L'apprenti pour lequel on prend les temple et on fait l'algorithme as partir de ceux ci.
-     * @return Une liste des positions représentant le parcours des temples du joueur.
+     * @param parPlayer objet Player : l'apprenti ordonnateur
+     * @return objet LinkedList : liste des positions représentant le parcours des temples du joueur.
      */
-    public static LinkedList<Position> TriSelect(Player parPlayer) {
+    public static LinkedList<Position> triSelect(Player parPlayer) {
         TreeMap<Position, Temple> templeMap = parPlayer.getTemples();
         Temple [] temples = new Temple[templeMap.keySet().size()];
         LinkedList<Position> parcours = new LinkedList<>();
@@ -39,11 +39,11 @@ public class Algorithmes {
     }
 
     /**
-     * Applique un algorithme heuristique sur la liste des temple de manière a savoir quel chemin le joueur va emprunté
+     * Applique un algorithme heuristique sur la liste des temple de manière a savoir quel chemin le joueur va emprunter
      * Cette méthode calcule un parcours qui passe par les temples du joueur, en choisissant à chaque étape
-     * le temple le plus proche pas encore visité et ramène le cristal trouvé a son temple et lorsque il n'as plus de cristal il recherche le plus proche pas encore visité .
-     * @param parPlayer L'apprenti pour lequel on prend les temple et on fait l'algorithme as partir de ceux ci.
-     * @return Une liste des positions représentant le parcours des temples du joueur.
+     * le temple le plus proche pas encore visité et ramène le cristal trouvé a son temple et lorsque il n'a plus de cristal il recherche le plus proche pas encore visité .
+     * @param parPlayer objet Player : l'apprenti ordonnateur
+     * @return objet LinkedList : liste des positions représentant le parcours des temples du joueur.
      */
     public static LinkedList<Position> heuristique(Player parPlayer) {
         // TreeMap pour stocker les temples du joueur par leur position
@@ -104,8 +104,9 @@ public class Algorithmes {
     }
 
     /**
-     * donne le nombre de pas que va faire l'apprenti pour associé chque cristal a sont temple
-     * @param parParcours
+     * Donne le nombre de pas que va faire l'apprenti pour associer chaque cristal à son temple
+     * @param parParcours objet LinkedList : liste des positions où l'apprenti doit aller
+     * @return objet int : longueur du parcours
      */
     public static int longueurParcoursAlgo(LinkedList<Position> parParcours) {
         int longueur = 0;
