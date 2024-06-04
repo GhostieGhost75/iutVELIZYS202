@@ -1,8 +1,12 @@
 package modele;
 
+/**correspond a des coordonnées de la carte*/
 public class Position implements Comparable<Position>{
+    /** objet int : indique le nombre de pas*/
     private static int nombreDePas = 0;
+    /** objet int : l'abscisse de coordonée*/
     protected int abscisse;
+    /** objet int : l'ordonée de coordonée*/
     protected int ordonnee;
 
     public Position(int parAbs, int parOrd) {
@@ -60,6 +64,11 @@ public class Position implements Comparable<Position>{
         this.ordonnee = parordonnee;
     }
 
+    /**
+     * calcule la distance entre deux coordonées
+     * @param parPos
+     * @return
+     */
     public int distancePos(Position parPos) {
         return Math.abs(this.ordonnee - parPos.ordonnee) + Math.abs(this.abscisse - parPos.abscisse);
     }

@@ -13,15 +13,14 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
+/**Classe qui fait le lien entre  vue et  modèle*/
 public class Controleur implements EventHandler {
-    @Override
+    /**Prend en charges les évènement ici cette méthode ne s'occupe que des évènement lié au menu des scénarios*/
     public void handle(Event event) {
         Object userData = ((MenuItem) event.getSource()).getUserData();
         if (userData instanceof File) {
             File fichierScenario = (File) userData;
-            System.out.println("Fichier sélectionné : " + fichierScenario.getName());
             TreeMap<Position, Temple> temples = LectureScenario.lecture(fichierScenario);
-            System.out.println("Nombre de temples lus : " + temples.size());
             Player joueur = HBoxRoot.getApprenti();
             joueur.setTemples(temples);
             VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
@@ -32,11 +31,12 @@ public class Controleur implements EventHandler {
             vboxCanva.effacerTout();
             vboxCanva.afficherJoueur(joueur);
             for (Position temple : temples.keySet()) {
-                System.out.println("Temple à la position : " + temples.get(temple).getPos());
                 vboxCanva.dessinerTemple(temples.get(temple));
             }
         }
     }
+
+    /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour le manuel */
     public void handleMenuItemActionManuel(Event event){
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModemanuel())){
@@ -49,6 +49,7 @@ public class Controleur implements EventHandler {
 
 
     }
+    /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour l'heuristique */
     public void handleMenuItemActionHeuristique(Event event){
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getvuemodeHeuristique())) {
@@ -60,6 +61,7 @@ public class Controleur implements EventHandler {
 
 
     }
+    /**Prend en charges les évènement ici cette méthode s'occupe des évènement lié au menu des mode ici pour le tri selection */
     public void handleMenuItemActionTriselect(ActionEvent event) {
         StackpaneMode stackpaneMode = HBoxRoot.getStackpaneMode();
         if (stackpaneMode.getChildren().get(0).equals(stackpaneMode.getVueModeAlgoTriselection())) {
@@ -72,6 +74,7 @@ public class Controleur implements EventHandler {
 
     }
 
+    /**cette méthode s'occupe du bouton qui permet la permutation */
     public void handleButtonClick(ActionEvent event) {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();
@@ -79,7 +82,7 @@ public class Controleur implements EventHandler {
         vboxCanva.afficherJoueur(joueur);
 
     }
-
+    /**cette méthode s'occupe du bouton qui permet le lancement de l'algorithme Heuristique */
     public void handleButtonClickHeuristique(ActionEvent event) {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();
@@ -89,7 +92,7 @@ public class Controleur implements EventHandler {
         vboxCanva.deplacementAvecTimerListe(parcour);
         }
 
-
+    /**cette méthode s'occupe du bouton qui permet le lancement de l'algorithme qui utilise le Tri selection */
     public void handleButtonClickTriSelection(ActionEvent event) {
         VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
         Player joueur = HBoxRoot.getApprenti();

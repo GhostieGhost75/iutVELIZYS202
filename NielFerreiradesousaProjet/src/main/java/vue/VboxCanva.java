@@ -15,10 +15,13 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
-
+/** classe représentant la grille de jeux */
 public class VboxCanva extends VBox implements ConstantesCanvas {
+    /** objet Canvas : la grille,la map */
     public Canvas canvasCarte;
+    /** objet Label : label pour le nombre de pas*/
     public Label labelNombreDePas;
+    /** objet GraphicsContext : permet le changement des couleur et le dessin de forme */
     public GraphicsContext graphicsContext2D;
 
     public VboxCanva() {
@@ -35,7 +38,10 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         VBox.setMargin(canvasCarte, new Insets(30));
     }
 
-
+    /**
+     * Permet le deplacement du joueur lors d'un clique
+     * @param player
+     */
     public void cliquemouv(Player player) {
         canvasCarte.setOnMouseClicked(event -> {
             double abscisse = (event.getX() / CARRE)-1;
@@ -78,6 +84,11 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         });
 
     }
+
+    /**
+     * permet le deplacement de l'algorithme
+     * @param positionsCibles
+     */
     public void deplacementAvecTimerListe( LinkedList<Position> positionsCibles) {
         int[] indice = {0};
         Timer timer = new Timer();
@@ -129,6 +140,10 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         timer.scheduleAtFixedRate(timerTask, 15000, 100);
     }
 
+    /**
+     * affiche le chemin via un joueur invisible qui depose un carré bleu derrière lui
+     * @param positionsCibles
+     */
     public void deplacementAvecTimerListeChemin( LinkedList<Position> positionsCibles) {
         int[] indice = {0};
         Timer timer = new Timer();
@@ -157,7 +172,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                             }
                             graphicsContext2D.setFill(COULEUR_CHEMIN);
                             graphicsContext2D.fillRect((apprenti.getPosPlayer().getAbscisse()+1)*CARRE,(apprenti.getPosPlayer().getOrdonnee()+1)*CARRE,CARRE,CARRE);
-                            labelNombreDePas.setText("Nombre de pas : " + apprenti.getPosPlayer().getNombreDePas());
                         });
                     } else {
                         // Si la position cible est atteinte, passer à la prochaine position
@@ -176,7 +190,9 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
     }
 
 
-
+    /**
+     * methode qui dessine la map
+     */
     public void dessinerGrille() {
         graphicsContext2D.setStroke(COULEUR_CANVAS);
         for (int i = 0; i < LARGEUR_CANVAS; i += CARRE) {
@@ -201,6 +217,11 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
             numLigne++;
         }
     }
+
+    /**
+     * affiche le joueur et son cristal
+     * @param player
+     */
     public void afficherJoueur(Player player) {
         Position position = player.getPosPlayer();
         double posX = (position.getAbscisse()+1) * CARRE;
@@ -209,6 +230,11 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         graphicsContext2D.fillOval(posX, posY, CARRE, CARRE);
         afficher_cristal_apprenti(player);
     }
+
+    /**
+     * affiche le cristal du joueur
+     * @param player
+     */
     public void afficher_cristal_apprenti(Player player){
         Position pos= player.getPosPlayer();
         double posX = (pos.getAbscisse()+1) * CARRE;
@@ -217,6 +243,11 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         graphicsContext2D.fillOval(posX, posY,CARRE/1.2 ,CARRE/1.2 );
 
     }
+
+    /**
+     * affiche le cristal du temple
+     * @param temple
+     */
     public void afficher_cristal_temple(Temple temple){
         Position pos= new Position (temple.getPos().getAbscisse(),temple.getPos().getOrdonnee());
         double posX = (pos.getAbscisse()+1) * CARRE;
@@ -226,6 +257,10 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
 
     }
 
+    /**
+     * dessine un temple
+     * @param temple
+     */
     public void dessinerTemple(Temple temple) {
         Position position = temple.getPos();
         double posX = (position.getAbscisse() + 1) * CARRE;
@@ -235,16 +270,12 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         afficher_cristal_temple(temple);
     }
 
+    /**
+     * efface toute la map et la redessine
+     */
     public void effacerTout() {
         graphicsContext2D.clearRect(0, 0, LARGEUR_CANVAS, HAUTEUR_CANVAS);
         dessinerGrille();
     }
 
-    public void effacerPosition(Position position) {
-        double posX = (position.getAbscisse() + 1) * CARRE;
-        double posY = (position.getOrdonnee() + 1) * CARRE;
-        graphicsContext2D.clearRect(posX, posY, CARRE, CARRE);
-        graphicsContext2D.setStroke(COULEUR_CANVAS);
-        graphicsContext2D.strokeRect(posX, posY, CARRE, CARRE);
-    }
 }
