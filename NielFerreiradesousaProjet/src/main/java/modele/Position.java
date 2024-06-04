@@ -20,7 +20,6 @@ public class Position implements Comparable<Position>{
 
     public void deplacementUneCase(Position parPosition) {
         if (!this.equals(parPosition)) {
-            nombreDePas++;
             if (this.abscisse > parPosition.abscisse) {
                 this.abscisse -=1;
             } else if (this.abscisse < parPosition.abscisse) {
