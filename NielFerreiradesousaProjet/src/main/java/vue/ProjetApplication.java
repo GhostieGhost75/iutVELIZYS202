@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
+/** Classe permettant d'exécuter l'application */
 public class ProjetApplication extends Application {
+
+    /** méthode permettant d'initialiser et exécuter l'application */
     public void start(Stage stage) {
         Rectangle2D screenSize = Screen.getPrimary().getBounds();//obtient la taille de l'écran
         stage.setWidth(screenSize.getWidth());
@@ -19,6 +22,8 @@ public class ProjetApplication extends Application {
         stage.setTitle("APPRENTI ORDONNATEUR");
         stage.show();
     }
+
+    /** méthode main permettant d'exécuter ce fichier */
     public static void main (String [] args) {
         Application.launch(args);
     }

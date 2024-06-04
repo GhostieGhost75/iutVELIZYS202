@@ -12,15 +12,22 @@ import modele.Player;
 
 import java.io.File;
 
+/** Classe représentant l'ensemble de la fenêtre et combinant toutes les vues */
 public class HBoxRoot extends HBox implements ConstantesCanvas {
 
+    /** objet Player : l'apprenti ordonnateur, le joueur */
     private static Player apprenti;
+
+    /** objet Controleur : le controleur de l'application */
     private static Controleur controleur;
+
+    /** objet VBoxCanva : la grille du jeu */
     private static VboxCanva vueCanvas;
 
+    /** objet StackpaneMode : affiche les boutons nécessaires pour chaque mode */
     private static StackpaneMode stackpaneMode;
-    public GraphicsContext graphicsContext2D;
 
+    /** Constructeur de l'objet HBoxRoot : permet d'afficher et combiner toutes les vues de l'application */
     public HBoxRoot() {
         apprenti = new Player();
         controleur = new Controleur();
@@ -60,13 +67,22 @@ public class HBoxRoot extends HBox implements ConstantesCanvas {
     }
 
 
-    public static Player getApprenti() {
-        return apprenti;
-    }
+    /**
+     * Permet de récupérer l'apprenti ordonnateur
+     * @return objet Player : l'apprenti ordonnateur
+     */
+    public static Player getApprenti() {return apprenti;}
 
-    public static VboxCanva getVboxCanva() {
-        return vueCanvas;
-    }
+    /**
+     * Permet de récupérer la vue de la grille (VboxCanva)
+     * @return objet VboxCanva : la grille de l'application
+     */
+    public static VboxCanva getVboxCanva() {return vueCanvas;}
+
+    /**
+     * Permet de récupérer la vue des boutons de chaque mode (StackpaneMode)
+     * @return objet StackpaneMode : les boutons pour chaque mode
+     */
     public static StackpaneMode getStackpaneMode(){return stackpaneMode;}
 
 }
