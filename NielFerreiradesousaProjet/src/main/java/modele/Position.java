@@ -102,9 +102,9 @@ public class Position implements Comparable<Position>{
     }
 
     /**
-     * calcule la distance entre deux coordonées
-     * @param parPos
-     * @return
+     * calcule la distance entre deux positions
+     * @param parPos objet Position : la deuxième position
+     * @return objet int : la distance entre deux positions
      */
     public int distancePos(Position parPos) {
         return Math.abs(this.ordonnee - parPos.ordonnee) + Math.abs(this.abscisse - parPos.abscisse);

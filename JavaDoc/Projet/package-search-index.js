@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.nielferreiradesousaprojet","l":"com.example.nielferreiradesousaprojet"},{"m":"com.example.nielferreiradesousaprojet","l":"controleur"},{"m":"com.example.nielferreiradesousaprojet","l":"modele"},{"m":"com.example.nielferreiradesousaprojet","l":"vue"}];updateSearchResults();
