@@ -57,7 +57,7 @@ public class Controleur implements EventHandler {
                     + Algorithmes.longueurParcoursAlgo(chemin));
         }
         else if (mode == 2) {
-            chemin = Algorithmes.heuristique(apprenti);
+            chemin = Algorithmes.triSelect(apprenti);
             vBoxCanva.deplacementAvecTimerListeChemin(chemin);
             HBoxRoot.getStackpaneMode().getVueModeAlgoTriselection().labelNbdepasattendus.setText("Nombre de pas attendus : "
                     + Algorithmes.longueurParcoursAlgo(chemin));
