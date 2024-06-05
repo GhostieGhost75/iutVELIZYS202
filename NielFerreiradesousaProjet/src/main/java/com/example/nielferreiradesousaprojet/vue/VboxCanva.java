@@ -138,6 +138,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                 } else {
                     // Arrêter le timer une fois toutes les positions atteintes
                     apprenti.permutation();
+                    Platform.runLater(() -> {Controleur.checkwin();});
                     timer.cancel();
                 }
 
