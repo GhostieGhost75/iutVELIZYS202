@@ -100,8 +100,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
         int[] indice = {0};
         Timer timer = new Timer();
         Player apprenti = HBoxRoot.getApprenti();
-
-
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -135,7 +133,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         indice[0]++;
                         if (indice[0] < positionsCibles.size()) {
                             apprenti.permutation();
-                            Controleur.checkwin();
                         }
                     }
                 } else {
