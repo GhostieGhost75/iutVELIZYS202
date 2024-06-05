@@ -17,7 +17,6 @@ public class Algorithmes {
         LinkedList<Position> parcours = new LinkedList<>();
         for (Position pos : templeMap.keySet())
             temples[templeMap.get(pos).getCristal()-1] = templeMap.get(pos);
-        System.out.println(temples);
         for (int i=0; i< temples.length;i++) {
             int min = i;
             for (int j=i+1; j< temples.length;j++) {
@@ -33,8 +32,6 @@ public class Algorithmes {
                 temples[min] = temp;
             }
         }
-        System.out.println(longueurParcoursAlgo(parcours));
-        System.out.println(parcours);
         return parcours;
     }
 
@@ -96,8 +93,6 @@ public class Algorithmes {
         }
 
         // Affichage de la longueur du parcours et du parcours lui-même
-        System.out.println(longueurParcoursAlgo(parcours));
-        System.out.println(parcours);
 
         // Retourne le parcours optimal calculé
         return parcours;

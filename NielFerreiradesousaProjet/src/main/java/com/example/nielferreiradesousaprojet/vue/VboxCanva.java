@@ -62,14 +62,12 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        Position destination;
                         player.setMoving(true);
                         player.getPosPlayer().deplacementUneCase(positionCliquee);
                         player.getPosPlayer().incrementerNombreDePas();
 
                         effacerTout();
                         for (Position temple : player.getTemples().keySet()) {
-                            System.out.println("Temple à la position : " + player.getTemples().get(temple).getPos());
                             dessinerTemple(player.getTemples().get(temple));
                         }
 
@@ -77,7 +75,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                         afficherJoueur(player);
 
                         // Mettre à jour le nombre de pas
-                        labelNombreDePas.setText("Nombre de pas : " + player.getPosPlayer().getNombreDePas());
+                        labelNombreDePas.setText("Nombre de pas : " + Position.getNombreDePas());
 
 
                         // Si le joueur n'est pas encore arrivé à sa position cible, répéter la tâche
@@ -130,7 +128,7 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                                 dessinerTemple(temple);
                             }
                             afficherJoueur(apprenti);
-                            labelNombreDePas.setText("Nombre de pas : " + apprenti.getPosPlayer().getNombreDePas());
+                            labelNombreDePas.setText("Nombre de pas : " + Position.getNombreDePas());
                         });
                     } else {
                         // Si la position cible est atteinte, passer à la prochaine position
@@ -187,8 +185,6 @@ public class VboxCanva extends VBox implements ConstantesCanvas {
                     } else {
                         // Si la position cible est atteinte, passer à la prochaine position
                         indice[0]++;
-                        if (indice[0] < positionsCibles.size()) {
-                        }
                     }
                 } else {
                     // Arrêter le timer une fois toutes les positions atteintes

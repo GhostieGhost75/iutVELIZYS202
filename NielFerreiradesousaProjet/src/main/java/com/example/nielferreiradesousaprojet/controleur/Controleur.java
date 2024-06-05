@@ -45,7 +45,6 @@ public class Controleur implements EventHandler {
         LinkedList<Position> chemin;
         vBoxCanva.effacerTout();
         for (Position temple : apprenti.getTemples().keySet()) {
-            System.out.println("Temple à la position : " + apprenti.getTemples().get(temple).getPos());
             vBoxCanva.dessinerTemple(apprenti.getTemples().get(temple));
         }
         // Mettre à jour l'interface graphique pour la nouvelle position
@@ -76,7 +75,7 @@ public class Controleur implements EventHandler {
             VboxCanva vboxCanva = HBoxRoot.getVboxCanva();
             vboxCanva.effacerTout();
             joueur.reset();
-            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + joueur.getPosPlayer().getNombreDePas());
+            vboxCanva.labelNombreDePas.setText("Nombre de pas : " + Position.getNombreDePas());
             vboxCanva.cliquemouv(joueur);
             vboxCanva.effacerTout();
             vboxCanva.afficherJoueur(joueur);
