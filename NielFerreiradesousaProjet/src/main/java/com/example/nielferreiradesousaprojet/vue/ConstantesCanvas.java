@@ -23,7 +23,10 @@ public interface ConstantesCanvas {
     double CARRE =Math.floor(LARGEUR_CANVAS / NB_CARRES_PAR_LIGNE);
 
     /** table d'objets Paint : liste des couleurs des temples/cristaux */
-    Paint[] COULEUR_TEMPLES ={Paint.valueOf("white"),Paint.valueOf("green"),Paint.valueOf("brown"),Paint.valueOf("GOLD"),Paint.valueOf("LIGHTSTEELBLUE"),Paint.valueOf("yellow"),Paint.valueOf("gray"),Paint.valueOf("orange"),Paint.valueOf("pink"),Paint.valueOf("cyan")};
+    Paint[] COULEUR_TEMPLES ={Paint.valueOf("white"),Paint.valueOf("green"),Paint.valueOf("brown"),Paint.valueOf("GOLD"),
+            Paint.valueOf("LIGHTSTEELBLUE"),Paint.valueOf("yellow"),Paint.valueOf("gray"),Paint.valueOf("orange"),
+            Paint.valueOf("pink"),Paint.valueOf("cyan"), Paint.valueOf("maroon"), Paint.valueOf("tan"),
+            Paint.valueOf("indigo"), Paint.valueOf("lime"), Paint.valueOf("magenta"), Paint.valueOf("olive")};
 
     /** objet Paint : couleur du joueur */
     Paint COULEUR_JOUEUR = Paint.valueOf("red");
